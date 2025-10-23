@@ -86,8 +86,8 @@ section {
 }
 
 .main-header .container {
-    display: grid;
-    grid-template-columns: auto 1fr auto;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
     gap: 2rem;
 }
@@ -101,7 +101,6 @@ section {
     height: 65px;
     width: auto;
     object-fit: contain;
-    margin-left: -300px;
 }
 .logo:focus-visible {
     outline-offset: 4px;
@@ -111,7 +110,7 @@ section {
 #main-nav > ul {
     list-style: none;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
     gap: 2rem;
 }
@@ -121,7 +120,7 @@ section {
     color: var(--text-color);
     font-weight: 700;
     transition: color 0.3s;
-    font-size: 1.2rem;
+    font-size: 1rem;
     display: flex;
     align-items: center;
     gap: 0.3rem;
@@ -150,6 +149,7 @@ section {
 .header-ctas {
     display: flex;
     gap: 0.75rem;
+    flex-shrink: 0;
 }
 
 
@@ -212,8 +212,6 @@ section {
     border: none;
     cursor: pointer;
     z-index: 1001;
-    grid-column: 3;
-    justify-self: end;
 }
 .nav-toggle:focus-visible {
     outline-offset: 4px;
@@ -353,7 +351,6 @@ section {
 .btn-sm {
     padding: 8px 16px;
     font-size: 0.9rem;
-    left: 220px;
 }
 
 .btn.disabled, .btn:disabled {
@@ -1210,7 +1207,6 @@ input.invalid {
 }
 .footer-col .logo img {
     height: 100px;
-    margin-left: 25px;
     margin-bottom: 0.1rem;
 }
 .footer-col h3 {
@@ -1711,28 +1707,65 @@ input.invalid {
 }
 
 /* --- Responsive --- */
+@media (max-width: 1200px) {
+    .container {
+        padding: 0 30px;
+    }
+
+    .nav-link {
+        font-size: 0.9rem;
+        gap: 0.2rem;
+    }
+
+    #main-nav > ul {
+        gap: 1.5rem;
+    }
+}
+
 @media (max-width: 1024px) {
     .decision-makers-layout { grid-template-columns: 1fr; }
     #floor-plan-container { grid-template-columns: 1fr; }
-    .footer-grid { 
+    .footer-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 2.5rem;
+    }
+
+    .nav-link {
+        font-size: 0.85rem;
+    }
+
+    #main-nav > ul {
+        gap: 1rem;
+    }
+
+    .header-ctas .btn-sm {
+        padding: 6px 12px;
+        font-size: 0.8rem;
     }
 }
 
 @media (max-width: 768px) {
-    h1 { font-size: 2.5rem; }
-    h2 { font-size: 2rem; }
-    section { padding: 60px 0; }
-    
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.75rem; }
+    h3 { font-size: 1.5rem; }
+    section { padding: 50px 0; }
+
+    .container {
+        padding: 0 20px;
+    }
+
     body {
-        padding-bottom: 60px; /* Space for sticky bar */
+        padding-bottom: 60px;
     }
 
     .nav-toggle { display: block; }
     .header-ctas { display: none; }
     .main-header .container {
-        grid-template-columns: auto 1fr;
+        justify-content: space-between;
+    }
+
+    .logo img {
+        height: 50px;
     }
     
     #main-nav {
@@ -1821,7 +1854,7 @@ input.invalid {
         z-index: 995;
         display: flex;
         justify-content: space-around;
-        padding: 8px 0;
+        padding: 10px 0;
     }
     .mobile-cta-btn {
         display: flex;
@@ -1835,8 +1868,65 @@ input.invalid {
         flex-grow: 1;
         padding: 0 5px;
         text-align: center;
+        transition: color 0.3s;
+    }
+    .mobile-cta-btn:active {
+        color: #d12386;
     }
     .mobile-cta-btn i {
         font-size: 1.25rem;
+    }
+
+    .hero-text p {
+        font-size: 1rem;
+    }
+
+    .cta-group {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .cta-group .btn {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    #countdown-timer {
+        flex-wrap: wrap;
+        gap: 0.75rem;
+    }
+
+    .timer-unit {
+        min-width: 70px;
+        max-width: 90px;
+        padding: 0.75rem;
+    }
+
+    .timer-unit span {
+        font-size: 2rem;
+    }
+
+    .attendee-grid,
+    .benefits-grid,
+    .speakers-grid,
+    .testimonials-grid,
+    .ways-to-join-grid,
+    .packages-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .market-opportunity-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .stat-card {
+        padding: 1.5rem;
+    }
+
+    .benefit-card h3 {
+        white-space: normal;
+        min-height: auto;
     }
 }
