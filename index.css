@@ -1882,100 +1882,104 @@ input.invalid {
     font-size: 1.1rem;
 }
 
-/* --- Agenda Page Styles --- */
-.agenda-subtitle {
-   display: none;
+/* --- NEW Agenda Page Styles --- */
+.agenda-container {
+    max-width: 900px;
+    margin: 0 auto;
 }
-.agenda-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    align-items: start;
+.agenda-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color);
 }
-.agenda-day-card {
-    background: transparent;
-    padding: 0;
-    border-radius: 0;
-    box-shadow: none;
-    border: none;
-    position: relative;
-    padding-left: 50px;
-}
-
-.agenda-day-card::before {
-    content: '';
-    position: absolute;
-    left: 12px;
-    top: 50px;
-    bottom: 20px;
-    width: 4px;
-    background: var(--surface-color);
-    border-radius: 2px;
-}
-
-.agenda-day-card h3 {
-    font-size: 1.6rem;
-    text-align: left;
-    margin-top: 0;
-    margin-bottom: 2.5rem;
-    padding-bottom: 0;
-    border-bottom: none;
-    position: relative;
-}
-
-.agenda-day-card h4 {
-    font-size: 1.2rem;
-    text-align: left;
-    margin-top: 2.5rem;
-    margin-bottom: 1.5rem;
-    color: var(--text-color);
+.tab-btn {
+    padding: 1rem 1.5rem;
+    font-family: var(--heading-font);
     font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s ease;
+    color: #555;
+}
+.tab-btn:hover {
+    color: var(--text-color);
     background-color: var(--surface-color);
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
-    display: inline-block;
 }
-.agenda-day-card h4:first-of-type {
-    margin-top: 0;
+.tab-btn.active {
+    color: #711fb8;
+    border-bottom-color: #711fb8;
 }
-.agenda-list {
-    list-style: none;
-    padding: 0;
+
+.agenda-content {
+    display: none;
+}
+.agenda-content.active {
+    display: block;
+    animation: fadeIn 0.5s ease-in-out;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.time-block {
+    margin-bottom: 3rem;
+}
+.time-block-title {
+    font-size: 1.5rem;
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+    text-align: left;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--surface-color);
+}
+.session-list {
+    display: grid;
+    gap: 1.5rem;
+}
+.session-card {
+    background: var(--white);
+    border-radius: 10px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    border-left: 5px solid #711fb8;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.session-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+.session-card.keynote {
+    border-left-color: #d12386;
+}
+.session-icon {
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    background: var(--surface-color);
+    color: #711fb8;
+    font-size: 1.2rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.session-card.keynote .session-icon {
+    color: #d12386;
+}
+.session-details {
     margin: 0;
 }
-.agenda-list li {
-    display: flex;
-    gap: 0;
-    align-items: flex-start;
-    margin-bottom: 1.2rem;
+.session-details p {
+    margin: 0;
     line-height: 1.5;
-    position: relative;
-    padding-left: 30px;
-}
-
-.agenda-list li i {
-    position: absolute;
-    left: -12px;
-    top: 0;
-    margin-top: 2px;
-    width: 32px;
-    height: 32px;
-    line-height: 32px;
-    text-align: center;
-    border-radius: 50%;
-    background: var(--white);
-    border: 2px solid #711fb8;
-    color: #711fb8;
-    font-size: 14px;
-    z-index: 1;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-.agenda-list li i.fa-microphone-alt, 
-.agenda-list li i.fa-award {
-    background: #d12386;
-    border-color: #d12386;
-    color: var(--white);
 }
 
 .zones-grid {
@@ -2081,10 +2085,6 @@ input.invalid {
 
     .logo img {
         height: 55px;
-    }
-
-    .agenda-grid {
-        grid-template-columns: 1fr;
     }
 }
 
@@ -2272,5 +2272,17 @@ input.invalid {
     .benefit-card h3 {
         white-space: normal;
         min-height: auto;
+    }
+
+    .agenda-tabs {
+        flex-direction: column;
+        gap: 0;
+    }
+    .tab-btn {
+        text-align: left;
+        border-bottom: 1px solid var(--border-color);
+    }
+    .tab-btn.active {
+        border-bottom: 3px solid #711fb8;
     }
 }
