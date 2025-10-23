@@ -832,195 +832,139 @@ section {
 }
 
 
-/* --- Sponsorship & Booths --- */
+/* --- Sponsorship & Booths (Redesigned) --- */
 .gradient-headline { background: var(--gradient); color: var(--white); padding: 0.5rem 2rem; border-radius: 50px; display: inline-block; font-size: 1.8rem; margin: 0 auto 1.5rem;}
 #booth-packages { background-color: var(--surface-color); }
-.packages-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; justify-content: center; }
 
-/* Old package card styles for other pages */
+.packages-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+    gap: 2rem; 
+    justify-content: center; 
+    align-items: stretch; /* Make cards same height */
+}
+
 .package-card {
     background: var(--white);
-    border-radius: 10px;
+    border-radius: 15px;
     box-shadow: var(--shadow);
-    padding: 2.5rem 2rem;
-    text-align: center;
-    border-top: 5px solid #d12386;
     display: flex;
     flex-direction: column;
     transition: transform 0.3s, box-shadow 0.3s;
     position: relative;
+    border: 1px solid var(--border-color);
+    overflow: hidden;
 }
-.package-card:hover { transform: translateY(-10px); box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
-.package-card.popular { border-color: #711fb8; transform: scale(1.05); }
+
+.package-card:hover { 
+    transform: translateY(-10px); 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15); 
+}
+
+.package-card.popular, .package-card.best-visibility {
+    border: 2px solid #711fb8;
+}
+@media (min-width: 1025px) {
+    .package-card.popular {
+        transform: scale(1.05);
+    }
+    .package-card.popular:hover {
+        transform: scale(1.08) translateY(-10px);
+    }
+}
+
 .popular-badge {
     position: absolute;
-    top: -15px;
-    left: 50%;
-    transform: translateX(-50%);
+    top: 20px;
+    right: -45px;
     background: var(--gradient);
     color: var(--white);
-    padding: 5px 15px;
-    border-radius: 50px;
+    padding: 8px 40px;
     font-size: 0.8rem;
     font-weight: 700;
+    transform: rotate(45deg);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
-.package-card h3 { font-size: 1.8rem; margin-top:0; }
-.package-card .package-features { flex-grow: 1; color: #555; margin-bottom: 2rem; font-size: 0.95rem;}
-.package-card .btn { margin-top: auto; }
 
-/* --- New Booth Package Card Styles (booth-features.html) --- */
-#booth-packages .package-card {
-    padding: 0;
-    border-radius: 16px;
-    overflow: hidden;
-    color: var(--white);
+.package-card__header {
+    padding: 2rem 1.5rem;
+    text-align: center;
+    border-bottom: 1px solid var(--border-color);
+    background-color: #fdfcff;
+}
+.package-card__header i {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.package-card__header h3 {
+    font-size: 1.5rem;
+    margin: 0 0 0.5rem;
+    font-weight: 800;
+}
+.package-card__size {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #555;
+    margin: 0;
+}
+
+.package-card__body {
+    padding: 1.5rem;
     display: flex;
     flex-direction: column;
-    background-color: #7b1fa2; /* Base color */
-    box-shadow: var(--shadow);
-    border: none;
-    position: relative; /* For ribbon positioning */
-}
-
-#booth-packages .package-card.basic,
-#booth-packages .package-card.silver {
-    background-image: linear-gradient(145deg, #d12386, #7b1fa2);
-}
-#booth-packages .package-card.gold,
-#booth-packages .package-card.platinum {
-    background-image: linear-gradient(145deg, #a029c4, #5f148b);
-}
-
-#booth-packages .package-header {
-    background-color: rgba(0,0,0,0.1);
-    padding: 1.5rem 1rem;
-}
-#booth-packages .package-header h3 {
-    margin: 0;
-    font-size: 1.8rem;
-    font-weight: 800;
-    color: var(--white);
-    text-transform: uppercase;
-}
-
-#booth-packages .package-urgency {
-    padding: 1.5rem 1rem 0.5rem;
-    text-align: center;
-}
-#booth-packages .package-urgency span {
-    display: block;
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--white);
-}
-#booth-packages .package-urgency small {
-    display: block;
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--white);
-    opacity: 0.8;
-    margin-top: 0.25rem;
-}
-
-
-#booth-packages .package-size {
-    background-color: rgba(0,0,0,0.2);
-    padding: 1rem;
-    font-size: 1.1rem;
-    font-weight: 700;
-    margin-top: 1.5rem;
-}
-
-#booth-packages .package-ribbon {
-    background-color: #ffdd57;
-    color: #333;
-    font-weight: 800;
-    padding: 0.6rem 1rem;
-    text-align: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    position: absolute;
-    top: 140px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 85%;
-    z-index: 2;
-}
-#booth-packages .package-ribbon::before,
-#booth-packages .package-ribbon::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 0;
-    border-style: solid;
-    bottom: -10px;
-    z-index: -1;
-}
-#booth-packages .package-ribbon::before {
-    left: 0;
-    border-width: 10px 0 0 10px;
-    border-color: transparent transparent transparent #c8ab37;
-}
-#booth-packages .package-ribbon::after {
-    right: 0;
-    border-width: 10px 10px 0 0;
-    border-color: transparent #c8ab37 transparent transparent;
-}
-
-#booth-packages .package-benefits {
-    padding: 2.5rem 1.5rem 1.5rem;
     flex-grow: 1;
-    text-align: left;
-    background-color: rgba(0,0,0,0.1);
-}
-#booth-packages .gold .package-benefits,
-#booth-packages .platinum .package-benefits {
-    padding-top: 3rem; /* Make space for ribbon */
 }
 
-#booth-packages .package-benefits h4 {
-    text-align: center;
-    background-color: var(--white);
-    color: #6a1b9a;
-    border-radius: 50px;
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    margin: 0 auto 1.5rem;
-    display: table;
-    font-weight: 700;
-}
-
-#booth-packages .package-benefits ul {
+.package-card__features {
     list-style: none;
-    padding-left: 0.5rem;
+    padding: 0;
+    margin: 0 0 2rem;
+    flex-grow: 1;
 }
-
-#booth-packages .package-benefits li {
-    margin-bottom: 0.75rem;
-    padding-left: 1.5rem;
-    position: relative;
+.package-card__features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
     font-size: 0.95rem;
     line-height: 1.5;
+    color: #444;
+}
+.package-card__features li i {
+    color: #d12386;
+    margin-top: 4px;
 }
 
-#booth-packages .package-benefits li::before {
-    content: "•";
-    position: absolute;
-    left: 0;
-    color: var(--white);
-    font-size: 1.5rem;
-    line-height: 1;
+.package-card .btn {
+    margin-top: auto;
+    width: 100%;
 }
 
-#booth-packages .package-card .btn {
-    margin: 2rem;
-    align-self: center;
-    background: var(--white);
-    color: #6a1b9a;
-    border-color: var(--white);
+.urgency-cta-section {
+    margin-top: 4rem;
+    padding: 2.5rem;
+    background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url('https://images.pexels.com/photos/2608517/pexels-photo-2608517.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2') center/cover;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    text-align: center;
+    border: 1px solid var(--border-color);
 }
-#booth-packages .package-card .btn:hover {
-    background: var(--surface-color);
-    border-color: var(--surface-color);
+.urgency-cta-section h3 {
+    font-size: 2rem;
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+.urgency-cta-section h3 i {
+    color: #d12386;
+    margin-right: 0.5rem;
+}
+.urgency-cta-section p {
+    max-width: 600px;
+    margin: 0 auto 1.5rem;
+    font-size: 1.1rem;
 }
 
 /* 3 Ways to Join Section */
