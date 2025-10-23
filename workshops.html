@@ -75,64 +75,137 @@
         </section>
         
         <section id="agenda-section">
-            <div class="container">
-                <div class="agenda-grid">
-                    <!-- Day 1 -->
-                    <div class="agenda-day-card">
-                        <h3>Day 1 — The Future of Education Begins</h3>
-                        
-                        <h4>Morning Highlights</h4>
-                        <ul class="agenda-list">
-                            <li><i class="fas fa-mug-hot"></i> Welcome breakfast & opening ceremony with the Ministry of Education</li>
-                            <li><i class="fas fa-microphone-alt"></i> Keynote: “The Future of Education in the Digital Era”</li>
-                            <li><i class="fas fa-users"></i> Panel: AI & Innovation in Qatar’s Education Landscape</li>
-                        </ul>
+            <div class="container agenda-container">
+                <div class="agenda-tabs">
+                    <button class="tab-btn active" data-tab="day1">Day 1: The Future of Education Begins</button>
+                    <button class="tab-btn" data-tab="day2">Day 2: Empowering Leaders & Educators</button>
+                </div>
 
-                        <h4>Midday Tracks</h4>
-                        <ul class="agenda-list">
-                            <li><i class="fas fa-chalkboard-teacher"></i> Workshops on modernizing LMS/ERP and protecting school data</li>
-                            <li><i class="fas fa-rocket"></i> Live EdTech pitch showcase featuring regional startups</li>
-                            <li><i class="fas fa-utensils"></i> VIP networking lunch with education leaders</li>
-                        </ul>
-
-                        <h4>Afternoon Sessions</h4>
-                        <ul class="agenda-list">
-                            <li><i class="fas fa-cogs"></i> Masterclasses on AI tools for educators & smart school management</li>
-                            <li><i class="fas fa-chart-bar"></i> Research spotlight: Blended learning trends across the GCC</li>
-                            <li><i class="fas fa-child"></i> Parent & student voice sessions: “What Learning Feels Like in 2025”</li>
-                        </ul>
+                <div class="agenda-content-wrapper">
+                    <!-- Day 1 Content -->
+                    <div id="day1" class="agenda-content active">
+                        <div class="time-block">
+                            <h3 class="time-block-title">Morning Highlights</h3>
+                            <div class="session-list">
+                                <div class="session-card">
+                                    <div class="session-icon"><i class="fas fa-mug-hot"></i></div>
+                                    <div class="session-details"><p>Welcome breakfast & opening ceremony with the Ministry of Education</p></div>
+                                </div>
+                                <div class="session-card keynote">
+                                    <div class="session-icon"><i class="fas fa-microphone-alt"></i></div>
+                                    <div class="session-details"><p><strong>Keynote:</strong> “The Future of Education in the Digital Era”</p></div>
+                                </div>
+                                <div class="session-card">
+                                    <div class="session-icon"><i class="fas fa-users"></i></div>
+                                    <div class="session-details"><p><strong>Panel:</strong> AI & Innovation in Qatar’s Education Landscape</p></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="time-block">
+                            <h3 class="time-block-title">Midday Tracks</h3>
+                            <div class="session-list">
+                                <div class="session-card">
+                                    <div class="session-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                                    <div class="session-details"><p>Workshops on modernizing LMS/ERP and protecting school data</p></div>
+                                </div>
+                                <div class="session-card">
+                                    <div class="session-icon"><i class="fas fa-rocket"></i></div>
+                                    <div class="session-details"><p>Live EdTech pitch showcase featuring regional startups</p></div>
+                                </div>
+                                <div class="session-card">
+                                    <div class="session-icon"><i class="fas fa-utensils"></i></div>
+                                    <div class="session-details"><p>VIP networking lunch with education leaders</p></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="time-block">
+                            <h3 class="time-block-title">Afternoon Sessions</h3>
+                            <div class="session-list">
+                                <div class="session-card">
+                                    <div class="session-icon"><i class="fas fa-cogs"></i></div>
+                                    <div class="session-details"><p>Masterclasses on AI tools for educators & smart school management</p></div>
+                                </div>
+                                <div class="session-card">
+                                    <div class="session-icon"><i class="fas fa-chart-bar"></i></div>
+                                    <div class="session-details"><p>Research spotlight: Blended learning trends across the GCC</p></div>
+                                </div>
+                                <div class="session-card">
+                                    <div class="session-icon"><i class="fas fa-child"></i></div>
+                                    <div class="session-details"><p>Parent & student voice sessions: “What Learning Feels Like in 2025”</p></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <!-- Day 2 -->
-                    <div class="agenda-day-card">
-                        <h3>Day 2 — Empowering Leaders & Educators</h3>
-
-                        <h4>Morning</h4>
-                         <ul class="agenda-list">
-                            <li><i class="fas fa-microphone-alt"></i> Keynote: “Shaping the Schools of Tomorrow”</li>
-                            <li><i class="fas fa-users"></i> Panel: Digital Equity & Access in Education</li>
-                            <li><i class="fas fa-walking"></i> Innovation walkthrough on the expo floor</li>
-                        </ul>
-                        
-                        <h4>Midday Workshops</h4>
-                        <ul class="agenda-list">
-                            <li><i class="fas fa-drafting-compass"></i> Designing a Future-Proof Curriculum</li>
-                            <li><i class="fas fa-handshake"></i> Public-Private Collaboration in Education</li>
-                            <li><i class="fas fa-university"></i> University Impact Showcases</li>
-                        </ul>
-
-                        <h4>Afternoon</h4>
-                        <ul class="agenda-list">
-                            <li><i class="fas fa-laptop-code"></i> Teacher Empowerment through Technology</li>
-                            <li><i class="fas fa-wallet"></i> Financial Planning for School Growth</li>
-                            <li><i class="fas fa-user-tie"></i> Leadership Circle: Future of Private Education in the GCC</li>
-                             <li><i class="fas fa-lightbulb"></i> EdTech Innovation Panel + Student Job of the Future Showcase</li>
-                        </ul>
-
-                         <h4>Closing Ceremony</h4>
-                        <ul class="agenda-list">
-                            <li><i class="fas fa-award"></i> Student Diwan Education Excellence Awards</li>
-                            <li><i class="fas fa-camera"></i> Group Photo & Closing Remarks</li>
-                        </ul>
+                    <!-- Day 2 Content -->
+                    <div id="day2" class="agenda-content">
+                        <div class="time-block">
+                            <h3 class="time-block-title">Morning</h3>
+                            <div class="session-list">
+                                <div class="session-card keynote">
+                                    <div class="session-icon"><i class="fas fa-microphone-alt"></i></div>
+                                    <div class="session-details"><p><strong>Keynote:</strong> “Shaping the Schools of Tomorrow”</p></div>
+                                </div>
+                                <div class="session-card">
+                                    <div class="session-icon"><i class="fas fa-users"></i></div>
+                                    <div class="session-details"><p><strong>Panel:</strong> Digital Equity & Access in Education</p></div>
+                                </div>
+                                <div class="session-card">
+                                    <div class="session-icon"><i class="fas fa-walking"></i></div>
+                                    <div class="session-details"><p>Innovation walkthrough on the expo floor</p></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="time-block">
+                            <h3 class="time-block-title">Midday Workshops</h3>
+                            <div class="session-list">
+                                <div class="session-card">
+                                    <div class="session-icon"><i class="fas fa-drafting-compass"></i></div>
+                                    <div class="session-details"><p>Designing a Future-Proof Curriculum</p></div>
+                                </div>
+                                <div class="session-card">
+                                    <div class="session-icon"><i class="fas fa-handshake"></i></div>
+                                    <div class="session-details"><p>Public-Private Collaboration in Education</p></div>
+                                </div>
+                                <div class="session-card">
+                                    <div class="session-icon"><i class="fas fa-university"></i></div>
+                                    <div class="session-details"><p>University Impact Showcases</p></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="time-block">
+                            <h3 class="time-block-title">Afternoon</h3>
+                             <div class="session-list">
+                                <div class="session-card">
+                                    <div class="session-icon"><i class="fas fa-laptop-code"></i></div>
+                                    <div class="session-details"><p>Teacher Empowerment through Technology</p></div>
+                                </div>
+                                <div class="session-card">
+                                    <div class="session-icon"><i class="fas fa-wallet"></i></div>
+                                    <div class="session-details"><p>Financial Planning for School Growth</p></div>
+                                </div>
+                                <div class="session-card">
+                                    <div class="session-icon"><i class="fas fa-user-tie"></i></div>
+                                    <div class="session-details"><p>Leadership Circle: Future of Private Education in the GCC</p></div>
+                                </div>
+                                <div class="session-card">
+                                    <div class="session-icon"><i class="fas fa-lightbulb"></i></div>
+                                    <div class="session-details"><p>EdTech Innovation Panel + Student Job of the Future Showcase</p></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="time-block">
+                            <h3 class="time-block-title">Closing Ceremony</h3>
+                             <div class="session-list">
+                                <div class="session-card keynote">
+                                    <div class="session-icon"><i class="fas fa-award"></i></div>
+                                    <div class="session-details"><p>Student Diwan Education Excellence Awards</p></div>
+                                </div>
+                                <div class="session-card">
+                                    <div class="session-icon"><i class="fas fa-camera"></i></div>
+                                    <div class="session-details"><p>Group Photo & Closing Remarks</p></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
