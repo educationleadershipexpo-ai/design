@@ -903,11 +903,25 @@ section {
     text-transform: uppercase;
 }
 
-#booth-packages .package-price {
-    font-size: 2.8rem;
-    font-weight: 800;
-    padding: 1.5rem 1rem 0;
+#booth-packages .package-urgency {
+    padding: 1.5rem 1rem 0.5rem;
+    text-align: center;
 }
+#booth-packages .package-urgency span {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--white);
+}
+#booth-packages .package-urgency small {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--white);
+    opacity: 0.8;
+    margin-top: 0.25rem;
+}
+
 
 #booth-packages .package-size {
     background-color: rgba(0,0,0,0.2);
@@ -925,7 +939,7 @@ section {
     text-align: center;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     position: absolute;
-    top: 185px;
+    top: 140px;
     left: 50%;
     transform: translateX(-50%);
     width: 85%;
@@ -960,7 +974,7 @@ section {
 }
 #booth-packages .gold .package-benefits,
 #booth-packages .platinum .package-benefits {
-    padding-top: 3.5rem; /* Make space for ribbon */
+    padding-top: 3rem; /* Make space for ribbon */
 }
 
 #booth-packages .package-benefits h4 {
