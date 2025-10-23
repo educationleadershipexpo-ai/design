@@ -1017,6 +1017,7 @@ section {
 }
 .prime-booth-counter p {
     margin: 0;
+    margin left: 150px;
 }
 .prime-booth-counter span {
     background: var(--gradient);
