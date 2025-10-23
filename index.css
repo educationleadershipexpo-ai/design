@@ -2065,7 +2065,7 @@ input.invalid {
     margin-bottom: 2rem;
 }
 
-/* --- Sponsorship Tiers (REDESIGNED) --- */
+/* --- Sponsorship Tiers (REDESIGNED V2) --- */
 #sponsorship-details h2, #sponsorship-details h3 {
     text-align: left;
 }
@@ -2073,50 +2073,46 @@ input.invalid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
     gap: 2rem;
-    align-items: stretch;
+    align-items: stretch; /* crucial for equal height cards */
 }
-
-/* Main Tier Card Structure */
 .tier-card {
     background: var(--white);
     border-radius: 15px;
-    box-shadow: var(--shadow);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05), 0 10px 20px rgba(0,0,0,0.05);
     display: flex;
     flex-direction: column;
     border: 1px solid var(--border-color);
-    border-top-width: 5px;
-    padding: 0; 
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .tier-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.07), 0 15px 30px rgba(0,0,0,0.07);
 }
-.tier-card.platinum { border-top-color: #711fb8; }
-.tier-card.gold { border-top-color: #ffc107; }
-.tier-card.startup { border-top-color: #d12386; }
 
-/* Tier Header */
 .tier-header {
-    padding: 2rem 2rem 1.5rem;
-    background-color: #fdfcff;
+    padding: 2rem;
+    color: var(--white);
 }
+.tier-card.platinum .tier-header { background: #101c35; }
+.tier-card.gold .tier-header { background: #ffc107; color: var(--text-color); }
+.tier-card.startup .tier-header { background: var(--gradient); }
+
 .tier-header h3 {
     font-size: 1.8rem;
+    color: inherit;
     margin-bottom: 0.25rem;
 }
 .tier-subtitle {
     font-weight: 700;
-    color: #555;
+    opacity: 0.9;
     margin: 0;
-    min-height: 2.4em; /* Reserve space for 2 lines */
 }
-
-/* Tier Body - This is the key fix for alignment */
 .tier-body {
     padding: 1.5rem 2rem;
     flex-grow: 1; 
+    display: flex;
+    flex-direction: column;
 }
 .tier-description {
     margin-bottom: 1.5rem;
@@ -2127,17 +2123,17 @@ input.invalid {
     font-weight: 700;
     margin-bottom: 1rem;
 }
-
-/* Benefits List */
 .tier-benefits {
     list-style: none;
     padding: 0;
-    margin: 0;
+    margin: 0 0 1.5rem;
+    flex-grow: 1; /* Make the list grow to push footer down */
 }
 .tier-benefits li {
     padding-left: 2rem;
     position: relative;
     margin-bottom: 0.75rem;
+    font-size: 0.95rem;
 }
 .tier-benefits li::before {
     content: '\f00c';
@@ -2150,37 +2146,18 @@ input.invalid {
 }
 .tier-benefits.two-column-list {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr 1fr;
     gap: 0.75rem 1.5rem;
 }
 .tier-benefits.two-column-list li {
     margin-bottom: 0;
 }
-
-/* Button Wrapper */
-.tier-card .btn {
-    margin: 1.5rem 2rem 2rem;
-    width: calc(100% - 4rem);
+.tier-footer {
+    padding: 0 2rem 2rem;
+    margin-top: auto; /* Pushes footer to the bottom */
 }
-
-/* Other Sponsorship Sections */
-.sponsorship-extra-section {
-    margin-top: 4rem;
-    padding: 3rem;
-    background: var(--white);
-    border-radius: 15px;
-    box-shadow: var(--shadow);
-}
-.sponsorship-extra-section h2 {
-    text-align: center;
-    font-size: 2rem;
-}
-.sponsorship-extra-section p {
-    text-align: center;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 2rem;
+.tier-footer .btn {
+    width: 100%;
 }
 
 .sponsorship-addons-grid {
@@ -2189,17 +2166,19 @@ input.invalid {
     gap: 2rem;
     margin-top: 4rem;
 }
+.sponsorship-extra-section {
+    margin-top: 4rem;
+    padding: 3rem;
+    background: var(--white);
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05), 0 10px 20px rgba(0,0,0,0.05);
+}
 .sponsorship-addons-grid .sponsorship-extra-section {
     margin-top: 0;
     height: 100%;
     display: flex;
     flex-direction: column;
 }
-.sponsorship-addons-grid .sponsorship-extra-section .branding-table,
-.sponsorship-addons-grid .sponsorship-extra-section .tier-benefits {
-    flex-grow: 1;
-}
-
 #exclusive-branding h2 i,
 #email-campaigns h2 i {
     margin-right: 0.75rem;
@@ -2207,21 +2186,11 @@ input.invalid {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
-
-#final-cta h2 i {
-    color: var(--white);
-    margin-right: 0.75rem;
-}
-
-/* Branding Opportunities Table (Redesigned) */
 .branding-table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 1.5rem;
     font-size: 1rem;
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    overflow: hidden;
 }
 .branding-table th, .branding-table td {
     padding: 1rem 1.25rem;
@@ -2232,13 +2201,12 @@ input.invalid {
     background: var(--surface-color);
     font-family: var(--heading-font);
     font-weight: 700;
-    border-bottom-width: 2px;
 }
 .branding-table tbody tr:last-child td {
     border-bottom: none;
 }
 .branding-table tbody tr:hover {
-    background-color: var(--surface-color);
+    background-color: #f8f8f8;
 }
 
 #final-cta {
@@ -2247,10 +2215,14 @@ input.invalid {
 }
 #final-cta h2, #final-cta p {
     color: var(--white);
+    text-align: center;
 }
 #final-cta .btn {
     display: table;
     margin: 1.5rem auto 0;
+}
+#final-cta h2 i {
+    color: var(--white);
 }
 
 /* --- Responsive --- */
