@@ -2065,7 +2065,7 @@ input.invalid {
     margin-bottom: 2rem;
 }
 
-/* --- Sponsorship Tiers (REDESIGNED V2) --- */
+/* --- Sponsorship Tiers (OLD) --- */
 #sponsorship-details h2, #sponsorship-details h3 {
     text-align: left;
 }
@@ -2209,6 +2209,209 @@ input.invalid {
     background-color: #f8f8f8;
 }
 
+/* --- NEW Sponsorship Page V2 Styles --- */
+/* Sponsorship Intro Section */
+#sponsorship-intro .market-opportunity-grid {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+#sponsorship-intro .stat-card {
+    background: var(--surface-color);
+}
+#sponsorship-intro h2 {
+    text-align: left;
+}
+#sponsorship-intro .subtitle {
+    text-align: left;
+    margin-left: 0;
+}
+
+/* Comparison Table */
+.comparison-table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 1rem;
+    margin-top: 3rem;
+    border: 1px solid var(--border-color);
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+}
+.comparison-table {
+    width: 100%;
+    min-width: 900px;
+    border-collapse: collapse;
+    text-align: center;
+}
+.comparison-table th, .comparison-table td {
+    padding: 1rem;
+    border-left: 1px solid var(--border-color);
+    vertical-align: middle;
+}
+.comparison-table th:first-child, .comparison-table td:first-child {
+    border-left: none;
+}
+
+.comparison-table thead th {
+    background: var(--white);
+    border-left: 1px solid var(--border-color);
+    padding: 1.5rem 1rem;
+    vertical-align: bottom;
+}
+.comparison-table thead h3 {
+    font-size: 1.6rem;
+    margin: 0 0 0.25rem;
+    text-align: center;
+}
+.comparison-table thead span {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: #555;
+}
+.comparison-table .tier-header-gold {
+    border: 3px solid #711fb8;
+    border-bottom: none;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    position: relative;
+    transform: scale(1.05);
+    z-index: 2;
+}
+.comparison-table .tier-header-gold .popular-badge {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #711fb8;
+    color: var(--white);
+    padding: 6px 15px;
+    border-radius: 50px;
+    box-shadow: none;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    font-weight: 700;
+}
+.comparison-table th:first-child {
+    text-align: left;
+    background: transparent;
+    font-size: 1.5rem;
+    font-family: var(--heading-font);
+    font-weight: 800;
+    color: var(--text-color);
+    width: 30%;
+}
+.comparison-table tbody td {
+    background: var(--white);
+}
+.comparison-table tbody td:first-child {
+    text-align: left;
+    font-weight: 700;
+    background-color: var(--surface-color);
+    padding-left: 1.5rem;
+}
+.comparison-table tbody td .fa-check {
+    color: #4db6ac;
+    font-size: 1.3rem;
+}
+.comparison-table tbody td:not(:first-child) {
+    font-weight: 600;
+}
+.comparison-table tr.feature-category td {
+    background-color: #f1f3f5;
+    font-weight: 800;
+    color: var(--text-color);
+    text-align: left;
+    padding-left: 1.5rem;
+    font-size: 1.1rem;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+}
+.comparison-table tr.cta-row td {
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-color);
+}
+.comparison-table td.popular {
+    border-left: 3px solid #711fb8;
+    border-right: 3px solid #711fb8;
+}
+.comparison-table tr:last-child td.popular {
+     border-bottom: 3px solid #711fb8;
+     border-bottom-left-radius: 12px;
+     border-bottom-right-radius: 12px;
+}
+.comparison-table td:not(:first-child) {
+    width: 23.33%;
+}
+
+
+/* A La Carte Sponsorships */
+#a-la-carte-sponsorships h2 {
+    text-align: left;
+}
+#a-la-carte-sponsorships .subtitle {
+    text-align: left;
+    margin-left: 0;
+}
+.a-la-carte-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+.a-la-carte-card {
+    background: var(--surface-color);
+    padding: 2.5rem 2rem;
+    border-radius: 15px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: 1px solid transparent;
+}
+.a-la-carte-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow);
+    background: var(--white);
+    border-color: var(--border-color);
+}
+.a-la-carte-card i {
+    font-size: 3rem;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 1.5rem;
+}
+.a-la-carte-card h4 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+}
+.a-la-carte-card p {
+    font-size: 0.95rem;
+    color: #555;
+    margin-bottom: 0;
+}
+
+/* Past Partners Showcase */
+#past-partners-showcase h2 {
+    text-align: left;
+}
+#past-partners-showcase .subtitle {
+    text-align: left;
+    margin-left: 0;
+}
+#past-partners-showcase .logo-grid {
+    max-width: 100%;
+}
+
+/* Sponsor FAQ */
+#sponsor-faq h2 {
+    text-align: left;
+    margin-bottom: 1rem;
+}
+#sponsor-faq .faq-accordion {
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 2rem;
+}
+
+/* Final CTA Section */
 #final-cta {
     background: var(--gradient);
     color: var(--white);
@@ -2217,13 +2420,13 @@ input.invalid {
     color: var(--white);
     text-align: center;
 }
-#final-cta .btn {
-    display: table;
-    margin: 1.5rem auto 0;
+#final-cta .cta-group {
+    margin-top: 2.5rem;
 }
-#final-cta h2 i {
-    color: var(--white);
+#final-cta h2 {
+    font-size: 2.5rem;
 }
+
 
 /* --- Responsive --- */
 @media (max-width: 1400px) {
@@ -2511,28 +2714,71 @@ input.invalid {
     .branding-table, .branding-table tbody, .branding-table tr, .branding-table td {
         display: block;
     }
-    .branding-table thead {
+    .comparison-table {
+        min-width: 0;
+    }
+    .comparison-table thead {
         display: none;
     }
-    .branding-table tr {
+    .comparison-table, .comparison-table tbody, .comparison-table tr, .comparison-table td {
+        display: block;
+        width: 100%;
+    }
+    .comparison-table tr {
         margin-bottom: 1rem;
         border: 1px solid var(--border-color);
-        border-radius: 8px;
+        border-radius: 10px;
+        overflow: hidden;
     }
-    .branding-table td {
-        border: none;
-        position: relative;
+    .comparison-table td {
+        text-align: right;
         padding-left: 50%;
+        position: relative;
+        border-left: none;
     }
-    .branding-table td:before {
+    .comparison-table td::before {
+        content: attr(data-label);
         position: absolute;
         left: 1rem;
         width: 45%;
-        padding-right: 10px;
-        white-space: nowrap;
-        font-weight: 700;
+        padding-right: 1rem;
+        text-align: left;
+        font-weight: bold;
     }
-    .branding-table td:nth-of-type(1):before { content: "Opportunity"; }
-    .branding-table td:nth-of-type(2):before { content: "Visibility"; }
-
+    .comparison-table td.popular {
+        border: 2px solid #711fb8;
+    }
+     .comparison-table tr.feature-category {
+        border: none;
+        margin-bottom: 0;
+    }
+    .comparison-table tr.feature-category td {
+        background: transparent;
+        font-size: 1.5rem;
+        text-align: center;
+        padding: 1rem 0;
+        font-weight: 800;
+        color: var(--text-color);
+        border-top: none;
+    }
+    .comparison-table tr.feature-category td::before {
+        content: none;
+    }
+     .comparison-table tr.cta-row {
+         border: none;
+         display: grid;
+         grid-template-columns: 1fr;
+         gap: 1rem;
+     }
+      .comparison-table tr.cta-row td {
+        padding: 0;
+        text-align: center;
+        border: none;
+    }
+    .comparison-table tr.cta-row td::before {
+        content: none;
+    }
+    .comparison-table tr.cta-row .btn {
+        width: 100%;
+    }
 }
