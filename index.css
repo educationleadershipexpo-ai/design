@@ -866,7 +866,7 @@ section {
 }
 @media (min-width: 1025px) {
     .package-card.popular:hover {
-        transform: scale(1.05) translateY(-10px);
+        transform: translateY(-10px) scale(1.03);
     }
 }
 
@@ -963,6 +963,61 @@ section {
     margin: 0 auto 1.5rem;
     font-size: 1.1rem;
 }
+
+#early-bird-countdown {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin: 1.5rem auto;
+    max-width: 450px;
+}
+#early-bird-countdown .timer-unit {
+    background: rgba(0,0,0,0.05);
+    border: 1px solid rgba(0,0,0,0.1);
+    padding: 1rem;
+    border-radius: 10px;
+    text-align: center;
+    min-width: 80px;
+    flex-grow: 1;
+}
+#early-bird-countdown .timer-unit span {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    font-family: var(--heading-font);
+    line-height: 1;
+    color: #711fb8;
+}
+#early-bird-countdown .timer-unit p {
+    margin: 0;
+    font-size: 0.75rem;
+    opacity: 0.8;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-color);
+}
+#early-bird-countdown h4 {
+    color: var(--text-color);
+    text-align: center;
+    width: 100%;
+}
+
+.prime-booth-counter {
+    margin: 1.5rem 0 2rem;
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+.prime-booth-counter p {
+    margin: 0;
+}
+.prime-booth-counter span {
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 1.5rem;
+    vertical-align: middle;
+}
+
 
 /* 3 Ways to Join Section */
 #three-ways-to-join { background-color: var(--white); }
