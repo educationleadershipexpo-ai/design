@@ -89,13 +89,15 @@ section {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 2rem;
+    gap: 1.5rem;
+    max-width: 1400px;
 }
 
 .logo {
     text-decoration: none;
     display: flex;
     align-items: center;
+    flex-shrink: 0;
 }
 .logo img {
     height: 65px;
@@ -107,12 +109,19 @@ section {
 }
 
 
+#main-nav {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
 #main-nav > ul {
     list-style: none;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 2rem;
+    gap: 1.8rem;
+    flex-wrap: nowrap;
 }
 
 .nav-link {
@@ -120,12 +129,13 @@ section {
     color: var(--text-color);
     font-weight: 700;
     transition: color 0.3s;
-    font-size: 1rem;
+    font-size: 0.95rem;
     display: flex;
     align-items: center;
     gap: 0.3rem;
     position: relative;
     padding-bottom: 5px;
+    white-space: nowrap;
 }
 .nav-link:hover {
     color: #d12386;
@@ -1707,18 +1717,46 @@ input.invalid {
 }
 
 /* --- Responsive --- */
+@media (max-width: 1400px) {
+    .main-header .container {
+        gap: 1rem;
+    }
+
+    #main-nav > ul {
+        gap: 1.2rem;
+    }
+
+    .nav-link {
+        font-size: 0.88rem;
+    }
+
+    .header-ctas .btn-sm {
+        padding: 8px 14px;
+        font-size: 0.85rem;
+    }
+}
+
 @media (max-width: 1200px) {
     .container {
         padding: 0 30px;
     }
 
+    .main-header .container {
+        gap: 0.75rem;
+    }
+
     .nav-link {
-        font-size: 0.9rem;
+        font-size: 0.82rem;
         gap: 0.2rem;
     }
 
     #main-nav > ul {
-        gap: 1.5rem;
+        gap: 1rem;
+    }
+
+    .header-ctas .btn-sm {
+        padding: 7px 12px;
+        font-size: 0.8rem;
     }
 }
 
@@ -1731,16 +1769,20 @@ input.invalid {
     }
 
     .nav-link {
-        font-size: 0.85rem;
+        font-size: 0.78rem;
     }
 
     #main-nav > ul {
-        gap: 1rem;
+        gap: 0.8rem;
     }
 
     .header-ctas .btn-sm {
-        padding: 6px 12px;
-        font-size: 0.8rem;
+        padding: 6px 10px;
+        font-size: 0.75rem;
+    }
+
+    .logo img {
+        height: 55px;
     }
 }
 
