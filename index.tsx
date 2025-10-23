@@ -918,6 +918,32 @@
         });
     }
 
+    // --- Agenda Page Tabs ---
+    function initializeAgendaTabs() {
+        const tabsContainer = document.querySelector('.agenda-tabs');
+        if (!tabsContainer) return;
+
+        const tabButtons = tabsContainer.querySelectorAll('.tab-btn');
+        const contentPanels = document.querySelectorAll('.agenda-content');
+
+        tabsContainer.addEventListener('click', (e) => {
+            const clickedButton = (e.target as HTMLElement).closest('.tab-btn');
+            if (!clickedButton) return;
+
+            // FIX: Cast the clickedButton from Element to HTMLElement to access the dataset property, resolving a TypeScript error.
+            const tabId = (clickedButton as HTMLElement).dataset.tab;
+            
+            // Update buttons
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            clickedButton.classList.add('active');
+
+            // Update content panels
+            contentPanels.forEach(panel => {
+                panel.classList.toggle('active', panel.id === tabId);
+            });
+        });
+    }
+
 
     highlightActiveNav();
     initializeMobileNav();
@@ -930,4 +956,5 @@
     initializeEarlyBirdCountdown();
     initializePastPartners();
     initializeHomePartners();
+    initializeAgendaTabs();
     });
