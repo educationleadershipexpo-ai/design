@@ -1,0 +1,279 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expo Agenda - QELE 2026</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<script type="importmap">
+{
+  "imports": {
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.24.0"
+  }
+}
+</script>
+</head>
+<body>
+
+    <header class="main-header" id="main-header">
+        <div class="container">
+            <a href="index.html" class="logo"><img src="https://res.cloudinary.com/dj3vhocuf/image/upload/v1761210698/logo500x250_i8opbv.png" alt="QELE 2026 Logo"></a>
+            <button class="nav-toggle" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="hamburger-box">
+                    <span class="hamburger-inner"></span>
+                </span>
+            </button>
+            <nav id="main-nav">
+                 <ul>
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="about.html" class="nav-link">About Expo</a></li>
+                    <li class="has-dropdown">
+                        <a href="#" class="nav-link">For Students <i class="fas fa-angle-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="universities.html">Student Registration</a></li>
+                            <li><a href="career-counselling.html">Career Counselling</a></li>
+                            <li><a href="workshops.html">Workshop Schedule</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-dropdown">
+                        <a href="why-exhibit.html" class="nav-link">For Exhibitors <i class="fas fa-angle-down"></i></a>
+                         <ul class="dropdown-menu">
+                            <li><a href="why-exhibit.html">Why Exhibit</a></li>
+                            <li><a href="booth-features.html">Booth Features</a></li>
+                            <li><a href="floor-plan.html">Floor Plan</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-dropdown">
+                        <a href="sponsorship-tiers.html" class="nav-link">For Sponsors <i class="fas fa-angle-down"></i></a>
+                         <ul class="dropdown-menu">
+                            <li><a href="sponsorship-tiers.html">Sponsorship Tiers</a></li>
+                            <li><a href="brand-exposure.html">Brand Exposure</a></li>
+                            <li><a href="past-partners.html">Past Partners</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-ctas">
+                <a href="floor-plan.html" class="btn btn-primary btn-sm">Book a Booth</a>
+                <a href="contact.html" class="btn btn-primary btn-sm">Sponsor Now</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>Expo Agenda Overview</h1>
+                <p>Two days. One mission — shaping the future of learning in Qatar.</p>
+            </div>
+        </section>
+        
+        <section id="agenda-section">
+            <div class="container">
+                <h2 class="agenda-subtitle">October 30–31, 2025 | Qatar National Convention Centre (QNCC)</h2>
+                <div class="agenda-grid">
+                    <!-- Day 1 -->
+                    <div class="agenda-day-card">
+                        <h3>Day 1 — The Future of Education Begins</h3>
+                        
+                        <h4>Morning Highlights</h4>
+                        <ul class="agenda-list">
+                            <li><i class="fas fa-mug-hot"></i> Welcome breakfast & opening ceremony with the Ministry of Education</li>
+                            <li><i class="fas fa-microphone-alt"></i> Keynote: “The Future of Education in the Digital Era”</li>
+                            <li><i class="fas fa-users"></i> Panel: AI & Innovation in Qatar’s Education Landscape</li>
+                        </ul>
+
+                        <h4>Midday Tracks</h4>
+                        <ul class="agenda-list">
+                            <li><i class="fas fa-chalkboard-teacher"></i> Workshops on modernizing LMS/ERP and protecting school data</li>
+                            <li><i class="fas fa-rocket"></i> Live EdTech pitch showcase featuring regional startups</li>
+                            <li><i class="fas fa-utensils"></i> VIP networking lunch with education leaders</li>
+                        </ul>
+
+                        <h4>Afternoon Sessions</h4>
+                        <ul class="agenda-list">
+                            <li><i class="fas fa-cogs"></i> Masterclasses on AI tools for educators & smart school management</li>
+                            <li><i class="fas fa-chart-bar"></i> Research spotlight: Blended learning trends across the GCC</li>
+                            <li><i class="fas fa-child"></i> Parent & student voice sessions: “What Learning Feels Like in 2025”</li>
+                        </ul>
+                    </div>
+                    <!-- Day 2 -->
+                    <div class="agenda-day-card">
+                        <h3>Day 2 — Empowering Leaders & Educators</h3>
+
+                        <h4>Morning</h4>
+                         <ul class="agenda-list">
+                            <li><i class="fas fa-microphone-alt"></i> Keynote: “Shaping the Schools of Tomorrow”</li>
+                            <li><i class="fas fa-users"></i> Panel: Digital Equity & Access in Education</li>
+                            <li><i class="fas fa-walking"></i> Innovation walkthrough on the expo floor</li>
+                        </ul>
+                        
+                        <h4>Midday Workshops</h4>
+                        <ul class="agenda-list">
+                            <li><i class="fas fa-drafting-compass"></i> Designing a Future-Proof Curriculum</li>
+                            <li><i class="fas fa-handshake"></i> Public-Private Collaboration in Education</li>
+                            <li><i class="fas fa-university"></i> University Impact Showcases</li>
+                        </ul>
+
+                        <h4>Afternoon</h4>
+                        <ul class="agenda-list">
+                            <li><i class="fas fa-laptop-code"></i> Teacher Empowerment through Technology</li>
+                            <li><i class="fas fa-wallet"></i> Financial Planning for School Growth</li>
+                            <li><i class="fas fa-user-tie"></i> Leadership Circle: Future of Private Education in the GCC</li>
+                             <li><i class="fas fa-lightbulb"></i> EdTech Innovation Panel + Student Job of the Future Showcase</li>
+                        </ul>
+
+                         <h4>Closing Ceremony</h4>
+                        <ul class="agenda-list">
+                            <li><i class="fas fa-award"></i> Student Diwan Education Excellence Awards</li>
+                            <li><i class="fas fa-camera"></i> Group Photo & Closing Remarks</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="expo-zones-section" class="bg-surface">
+            <div class="container">
+                <h2>Expo Zones & Networking Spaces</h2>
+                <div class="zones-grid">
+                    <div class="zone-card">
+                        <i class="fas fa-user-tie"></i>
+                        <h4>Leadership Lounge</h4>
+                        <p>Exclusive networking for school CEOs & deans.</p>
+                    </div>
+                     <div class="zone-card">
+                        <i class="fas fa-lightbulb"></i>
+                        <h4>Student Innovation Fair</h4>
+                        <p>Discover projects and ideas from the next generation.</p>
+                    </div>
+                     <div class="zone-card">
+                        <i class="fas fa-briefcase"></i>
+                        <h4>Career Zone</h4>
+                        <p>Connect with universities and career counsellors.</p>
+                    </div>
+                     <div class="zone-card">
+                        <i class="fas fa-vial"></i>
+                        <h4>EdTech Product Testing</h4>
+                        <p>Get hands-on with the latest educational tools.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="attendance-section">
+            <div class="container">
+                <h2>Expected Attendance</h2>
+                 <div class="market-opportunity-grid">
+                    <div class="stat-card">
+                        <i class="fas fa-users"></i>
+                        <h4>3,000 - 4,000</h4>
+                        <p>Delegates</p>
+                    </div>
+                     <div class="stat-card">
+                        <i class="fas fa-chalkboard-user"></i>
+                        <h4>50+</h4>
+                        <p>Exhibitors</p>
+                    </div>
+                     <div class="stat-card">
+                        <i class="fas fa-microphone-alt"></i>
+                        <h4>60+</h4>
+                        <p>Speakers</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="index.html" class="logo"><img src="https://res.cloudinary.com/dj3vhocuf/image/upload/v1761223357/logo-white_1_pqcaph.png" alt="QELE 2026 Logo"></a>
+                    <p>The premier event connecting educational leaders, institutions, and innovators in the MENA region.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Explore</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Expo</a></li>
+                        <li><a href="why-exhibit.html">For Exhibitors</a></li>
+                        <li><a href="sponsorship-tiers.html">For Sponsors</a></li>
+                        <li><a href="universities.html">Student Registration</a></li>
+                    </ul>
+                </div>
+                 <div class="footer-col">
+                    <h3>Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Connect With Us</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Sheraton Grand Doha, Qatar</p>
+                    <p><i class="fas fa-envelope"></i> partnerships@eduexpoqatar.com</p>
+                    <p><i class="fas fa-phone"></i> +974 7444 9111</p>
+                    <div class="social-links">
+                        <a href="https://twitter.com/qatarexpo2026" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="https://linkedin.com/company/qatarexpo2026" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://instagram.com/qatarexpo2026" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 QELE. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Chatbot -->
+    <div id="chatbot-fab-container">
+      <div id="chatbot-bubble" class="chatbot-bubble" style="display: none;"></div>
+      <div id="chatbot-fab" role="button" aria-label="Open AI Chat">
+          <i class="fas fa-comments"></i>
+      </div>
+    </div>
+    <div id="chatbot-window" class="chatbot-window" role="dialog" aria-modal="true" aria-labelledby="chatbot-header-title">
+        <div class="chatbot-header">
+            <h3 id="chatbot-header-title">QELE AI Assistant</h3>
+            <button id="chatbot-close-btn" aria-label="Close Chat">&times;</button>
+        </div>
+        <div id="chatbot-messages" class="chatbot-messages" role="log" aria-live="polite">
+        </div>
+        <div id="chatbot-suggestions" class="chatbot-suggestions">
+        </div>
+        <form id="chatbot-form" class="chatbot-form">
+            <div class="chatbot-input-wrapper">
+                <input type="text" id="chatbot-input" placeholder="Ask a question..." autocomplete="off" aria-label="Your message">
+                <button type="submit" aria-label="Send Message"><i class="fas fa-paper-plane"></i></button>
+            </div>
+            <div class="form-group-consent-chatbot">
+                <input type="checkbox" id="chatbot-consent" name="chatbot-consent" required>
+                <label for="chatbot-consent">I consent to the processing of my data.</label>
+                <div class="error-message"></div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Exit Intent Modal -->
+    <div id="exit-intent-modal" class="modal-overlay">
+        <div class="modal-content exit-intent-content" role="dialog" aria-modal="true" aria-labelledby="exit-modal-title">
+            <button class="modal-close-btn" aria-label="Close">&times;</button>
+            <h3 id="exit-modal-title">Download The Deck Before You Leave!</h3>
+            <p>Get our official Exhibitor & Sponsorship Deck, including the floor plan and ROI details, sent straight to your inbox.</p>
+            <a href="contact.html" class="btn btn-primary">Get The Deck</a>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/@panzoom/panzoom@4.5.1/dist/panzoom.min.js"></script>
+    <script type="module" src="index.tsx"></script>
+</body>
+</html>
