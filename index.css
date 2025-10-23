@@ -2156,6 +2156,36 @@ input.invalid {
     margin-bottom: 2rem;
 }
 
+.sponsorship-addons-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-top: 4rem;
+}
+.sponsorship-addons-grid .sponsorship-extra-section {
+    margin-top: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.sponsorship-addons-grid .sponsorship-extra-section .branding-table,
+.sponsorship-addons-grid .sponsorship-extra-section .tier-benefits {
+    flex-grow: 1;
+}
+
+#exclusive-branding h2 i,
+#email-campaigns h2 i {
+    margin-right: 0.75rem;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#final-cta h2 i {
+    color: var(--white);
+    margin-right: 0.75rem;
+}
+
 .branding-table {
     width: 100%;
     border-collapse: collapse;
@@ -2254,6 +2284,13 @@ input.invalid {
 
     .logo img {
         height: 55px;
+    }
+}
+
+@media (min-width: 992px) {
+    .sponsorship-addons-grid {
+        grid-template-columns: repeat(2, 1fr);
+        align-items: stretch;
     }
 }
 
