@@ -1,5 +1,4 @@
 
-
 :root {
     --gradient: linear-gradient(to right, #d12386, #711fb8);
     --primary-font: 'Poppins', sans-serif;
@@ -1380,10 +1379,11 @@ input.invalid {
     grid-template-columns: 2fr 1fr 1fr 1.5fr;
     gap: 3rem;
     padding-bottom: 40px;
+    align-items: start;
 }
 .footer-col .logo img {
-    height: 100px;
-    margin-bottom: 0.1rem;
+    height: 80px;
+    margin-bottom: 1rem;
 }
 .footer-col h3 {
     color: var(--white);
@@ -2065,6 +2065,117 @@ input.invalid {
     margin-bottom: 2rem;
 }
 
+/* --- NEW SPONSORSHIP TIERS PAGE --- */
+#sponsorship-details h2, #sponsorship-details h3 {
+    text-align: left;
+}
+.tiers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 2rem;
+    align-items: stretch;
+}
+.tier-card {
+    background: var(--white);
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    padding: 2.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--border-color);
+    border-top-width: 5px;
+}
+.tier-card.platinum { border-top-color: #711fb8; }
+.tier-card.gold { border-top-color: #ffc107; }
+.tier-card.startup { border-top-color: #d12386; }
+
+.tier-header h3 {
+    font-size: 1.8rem;
+    margin-bottom: 0.25rem;
+}
+.tier-subtitle {
+    font-weight: 700;
+    color: #555;
+    margin-bottom: 1.5rem;
+}
+.tier-description {
+    margin-bottom: 1.5rem;
+    color: #444;
+}
+.tier-card h4 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+.tier-benefits {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.tier-benefits li {
+    padding-left: 2rem;
+    position: relative;
+    margin-bottom: 0.75rem;
+}
+.tier-benefits li::before {
+    content: '\f00c';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    left: 0;
+    top: 4px;
+    color: #d12386;
+}
+
+.sponsorship-extra-section {
+    margin-top: 4rem;
+    padding: 3rem;
+    background: var(--white);
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+}
+.sponsorship-extra-section h2 {
+    text-align: center;
+    font-size: 2rem;
+}
+.sponsorship-extra-section p {
+    text-align: center;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2rem;
+}
+
+.branding-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.5rem;
+    font-size: 1rem;
+}
+.branding-table th, .branding-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+.branding-table thead th {
+    background: var(--surface-color);
+    font-family: var(--heading-font);
+    font-weight: 700;
+}
+.branding-table tbody tr:hover {
+    background-color: var(--surface-color);
+}
+#final-cta {
+    background: var(--gradient);
+    color: var(--white);
+}
+#final-cta h2, #final-cta p {
+    color: var(--white);
+}
+#final-cta .btn {
+    display: table;
+    margin: 1.5rem auto 0;
+}
 
 /* --- Responsive --- */
 @media (max-width: 1400px) {
@@ -2333,4 +2444,37 @@ input.invalid {
     .tab-btn.active {
         border-bottom: 3px solid #711fb8;
     }
+    .tiers-grid {
+        grid-template-columns: 1fr;
+    }
+    .sponsorship-extra-section {
+        padding: 2rem;
+    }
+    .branding-table, .branding-table tbody, .branding-table tr, .branding-table td {
+        display: block;
+    }
+    .branding-table thead {
+        display: none;
+    }
+    .branding-table tr {
+        margin-bottom: 1rem;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+    }
+    .branding-table td {
+        border: none;
+        position: relative;
+        padding-left: 50%;
+    }
+    .branding-table td:before {
+        position: absolute;
+        left: 1rem;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        font-weight: 700;
+    }
+    .branding-table td:nth-of-type(1):before { content: "Opportunity"; }
+    .branding-table td:nth-of-type(2):before { content: "Visibility"; }
+
 }
