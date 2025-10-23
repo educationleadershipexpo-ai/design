@@ -2111,6 +2111,7 @@ input.invalid {
     list-style: none;
     padding: 0;
     margin: 0;
+    flex-grow: 1;
 }
 .tier-benefits li {
     padding-left: 2rem;
@@ -2125,6 +2126,11 @@ input.invalid {
     left: 0;
     top: 4px;
     color: #d12386;
+}
+
+.tier-card .btn {
+    margin-top: 1.5rem;
+    width: 100%;
 }
 
 .tier-benefits.two-column-list {
