@@ -1,4 +1,5 @@
 
+
     import { GoogleGenAI, Chat, GenerateContentResponse } from "@google/genai";
 
     declare var Panzoom: any;
@@ -10,23 +11,29 @@
 
     // --- Reusable Form Validation Helpers ---
     const showError = (input: HTMLElement, message: string) => {
-        const formGroup = input.closest('.form-group');
-        const errorElement = formGroup?.querySelector('.error-message') as HTMLElement;
+        const formGroup = input.closest('.form-group, .form-group-consent, .interest-group-container');
+        if (!formGroup) return;
+        const errorElement = formGroup.querySelector('.error-message') as HTMLElement;
         if (errorElement) {
             errorElement.innerText = message;
             errorElement.style.display = 'block';
         }
-        input.classList.add('invalid');
+        if (input.tagName.toLowerCase() !== 'div') {
+            input.classList.add('invalid');
+        }
     };
 
     const clearError = (input: HTMLElement) => {
-        const formGroup = input.closest('.form-group');
-        const errorElement = formGroup?.querySelector('.error-message') as HTMLElement;
+        const formGroup = input.closest('.form-group, .form-group-consent, .interest-group-container');
+         if (!formGroup) return;
+        const errorElement = formGroup.querySelector('.error-message') as HTMLElement;
         if (errorElement) {
             errorElement.innerText = '';
             errorElement.style.display = 'none';
         }
-        input.classList.remove('invalid');
+         if (input.tagName.toLowerCase() !== 'div') {
+            input.classList.remove('invalid');
+        }
     };
 
     // --- Universal Real-Time Validator ---
@@ -43,6 +50,7 @@
         switch (field.id) {
             case 'form-name':
             case 'form-booth-name':
+            case 'form-student-name':
                 if (value === '') {
                     showError(field, 'Name is required.');
                     isValid = false;
@@ -51,8 +59,9 @@
             
             case 'form-organization':
             case 'form-booth-company':
+            case 'form-student-school':
                 if (value === '') {
-                    const fieldName = (field.id === 'form-booth-company') ? 'Company' : 'Organization';
+                    const fieldName = (field.id === 'form-booth-company') ? 'Company' : (field.id === 'form-student-school') ? 'School/Institution' : 'Organization';
                     showError(field, `${fieldName} is required.`);
                     isValid = false;
                 }
@@ -60,6 +69,7 @@
                 
             case 'form-email':
             case 'form-booth-email':
+            case 'form-student-email':
                 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
                 if (value === '') {
                     showError(field, 'Email is required.');
@@ -71,6 +81,7 @@
                 break;
             
             case 'form-phone':
+            case 'form-student-phone':
                 const phoneRegex = /^[\d\s()+-]+$/;
                 if (value !== '' && !phoneRegex.test(value)) {
                     showError(field, 'Please enter a valid phone number.');
@@ -80,13 +91,24 @@
             
             case 'form-interest':
             case 'form-modal-interest':
+            case 'form-student-nationality':
+            case 'form-student-grade':
+            case 'form-student-source':
                 if (select.value === '') {
-                    showError(field, 'Please select an interest.');
+                    showError(field, 'Please make a selection.');
                     isValid = false;
+                }
+                break;
+
+            case 'form-student-dob':
+                if (input.value === '') {
+                     showError(field, 'Date of birth is required.');
+                     isValid = false;
                 }
                 break;
             
             case 'form-booth-consent':
+            case 'form-student-consent':
                 if (!checkbox.checked) {
                     showError(checkbox, 'You must consent to continue.');
                     isValid = false;
@@ -212,7 +234,7 @@
     const countdownContainer = document.getElementById('countdown-timer');
 
     if (daysEl && hoursEl && minutesEl && secondsEl && countdownContainer) {
-        const countdownDate = new Date('2026-04-19T20:00:00').getTime();
+        const countdownDate = new Date('2026-04-19T08:00:00').getTime();
 
         const triggerUpdateAnimation = (element: HTMLElement | null) => {
             if (!element) return;
@@ -259,6 +281,44 @@
         }, 1000);
     }
     
+    // --- Early Bird Countdown Timer ---
+    function initializeEarlyBirdCountdown() {
+        const countdownContainer = document.getElementById('early-bird-countdown');
+        if (!countdownContainer) return;
+
+        const daysEl = document.getElementById('eb-days');
+        const hoursEl = document.getElementById('eb-hours');
+        const minutesEl = document.getElementById('eb-minutes');
+        const secondsEl = document.getElementById('eb-seconds');
+
+        if (!daysEl || !hoursEl || !minutesEl || !secondsEl) return;
+
+        // The early bird offer ends on the morning of Nov 20, 2025.
+        const countdownDate = new Date('2025-11-20T08:00:00').getTime();
+
+        const timerInterval = setInterval(() => {
+            const now = new Date().getTime();
+            const distance = countdownDate - now;
+
+            if (distance < 0) {
+                clearInterval(timerInterval);
+                countdownContainer.innerHTML = '<h4>The early bird offer has ended!</h4>';
+                return;
+            }
+
+            const days = String(Math.floor(distance / (1000 * 60 * 60 * 24))).padStart(2, '0');
+            const hours = String(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+            const minutes = String(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+            const seconds = String(Math.floor((distance % (1000 * 60)) / 1000)).padStart(2, '0');
+            
+            daysEl.textContent = days;
+            hoursEl.textContent = hours;
+            minutesEl.textContent = minutes;
+            secondsEl.textContent = seconds;
+
+        }, 1000);
+    }
+
     // --- Form Submission Logic ---
     const form = document.getElementById('contact-form') as HTMLFormElement;
     const successMessage = document.getElementById('form-success-message');
@@ -295,6 +355,61 @@
                 document.body.appendChild(link);
                 link.click();
                 document.body.removeChild(link);
+            }
+        });
+    }
+
+     // --- Student Registration Form Logic ---
+    function initializeStudentRegistrationForm() {
+        const form = document.getElementById('student-registration-form') as HTMLFormElement;
+        const successMessage = document.getElementById('student-form-success');
+        
+        if (!form || !successMessage) return;
+
+        const nameInput = document.getElementById('form-student-name') as HTMLInputElement;
+        const emailInput = document.getElementById('form-student-email') as HTMLInputElement;
+        const phoneInput = document.getElementById('form-student-phone') as HTMLInputElement;
+        const dobInput = document.getElementById('form-student-dob') as HTMLInputElement;
+        const nationalitySelect = document.getElementById('form-student-nationality') as HTMLSelectElement;
+        const schoolInput = document.getElementById('form-student-school') as HTMLInputElement;
+        const gradeSelect = document.getElementById('form-student-grade') as HTMLSelectElement;
+        const sourceSelect = document.getElementById('form-student-source') as HTMLSelectElement;
+        const consentCheckbox = document.getElementById('form-student-consent') as HTMLInputElement;
+        const interestsContainer = document.getElementById('form-student-interests');
+
+        const inputs: HTMLElement[] = [nameInput, emailInput, phoneInput, dobInput, nationalitySelect, schoolInput, gradeSelect, sourceSelect, consentCheckbox];
+
+        const validateInterestCheckboxes = (): boolean => {
+            if (!interestsContainer) return true;
+            const checkedCheckboxes = interestsContainer.querySelectorAll('input[type="checkbox"]:checked');
+            const isValid = checkedCheckboxes.length > 0;
+            if (isValid) {
+                clearError(interestsContainer);
+            } else {
+                showError(interestsContainer, 'Please select at least one area of interest.');
+            }
+            return isValid;
+        };
+
+        inputs.forEach(input => {
+            if (!input) return;
+            // FIX: Correctly determine event type for validation. Use `tagName` for `<select>` and check `type` for date and checkbox inputs. This resolves a TypeScript error and a logic bug.
+            const eventType = input.tagName.toLowerCase() === 'select' || ['date', 'checkbox'].includes((input as HTMLInputElement).type) ? 'change' : 'input';
+            input.addEventListener(eventType, () => validateField(input));
+        });
+
+        interestsContainer?.addEventListener('change', validateInterestCheckboxes);
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const areInputsValid = inputs.map(input => validateField(input)).every(Boolean);
+            const areInterestsValid = validateInterestCheckboxes();
+
+            if (areInputsValid && areInterestsValid) {
+                form.style.display = 'none';
+                successMessage.style.display = 'block';
+                window.scrollTo(0, 0); // Scroll to top to see message
             }
         });
     }
@@ -807,10 +922,12 @@
     highlightActiveNav();
     initializeMobileNav();
     initializeDropdowns();
+    initializeStudentRegistrationForm();
     initializeChatbot();
     initializeProactiveChat();
     initializeFaqAccordion();
     initializeExitIntentModal();
+    initializeEarlyBirdCountdown();
     initializePastPartners();
     initializeHomePartners();
     });
