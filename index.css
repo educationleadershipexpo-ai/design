@@ -2035,6 +2035,36 @@ input.invalid {
     border: 0;
 }
 
+/* Coming Soon Section */
+.coming-soon-section {
+    padding: 100px 0;
+    text-align: center;
+}
+.coming-soon-content {
+    max-width: 600px;
+    margin: 0 auto;
+    background: var(--white);
+    padding: 3rem;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+}
+.coming-soon-content i {
+    font-size: 4rem;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 1.5rem;
+}
+.coming-soon-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+.coming-soon-content p {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 2rem;
+}
+
 
 /* --- Responsive --- */
 @media (max-width: 1400px) {
