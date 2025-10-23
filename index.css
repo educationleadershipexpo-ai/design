@@ -865,11 +865,8 @@ section {
     border: 2px solid #711fb8;
 }
 @media (min-width: 1025px) {
-    .package-card.popular {
-        transform: scale(1.05);
-    }
     .package-card.popular:hover {
-        transform: scale(1.08) translateY(-10px);
+        transform: scale(1.05) translateY(-10px);
     }
 }
 
