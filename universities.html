@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Participating Universities - QELE 2026</title>
+    <title>Student Registration - QELE 2026</title>
     <link rel="stylesheet" href="index.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,6 +35,7 @@
                     <li class="has-dropdown">
                         <a href="#" class="nav-link">For Students <i class="fas fa-angle-down"></i></a>
                         <ul class="dropdown-menu">
+                            <li><a href="student-registration.html">Register as Student</a></li>
                             <li><a href="career-counselling.html">Career Counselling</a></li>
                             <li><a href="universities.html">Participating Universities</a></li>
                             <li><a href="workshops.html">Workshop Schedule</a></li>
@@ -69,35 +70,139 @@
     <main>
         <section class="page-header">
             <div class="container">
-                <h1>Participating Universities</h1>
-                <p>Meet representatives from leading local and international institutions.</p>
+                <h1>Student Registration</h1>
+                <p>Secure your free spot at QELE 2026 and connect with your future.</p>
             </div>
         </section>
         
-        <section class="bg-surface">
+        <section id="student-registration-form-section">
             <div class="container">
-                <h2>A World of Opportunity Awaits</h2>
-                <p class="subtitle">Explore programs, admission requirements, and scholarship opportunities directly from the source. The list is updated weekly.</p>
-                <div class="logo-grid">
-                    <div class="logo-item"><img src="https://logo.clearbit.com/harvard.edu" alt="Harvard University Logo"></div>
-                    <div class="logo-item"><img src="https://logo.clearbit.com/stanford.edu" alt="Stanford University Logo"></div>
-                    <div class="logo-item"><img src="https://logo.clearbit.com/mit.edu" alt="MIT Logo"></div>
-                    <div class="logo-item"><img src="https://logo.clearbit.com/ox.ac.uk" alt="Oxford University Logo"></div>
-                    <div class="logo-item"><img src="https://logo.clearbit.com/cam.ac.uk" alt="Cambridge University Logo"></div>
-                    <div class="logo-item"><img src="https://logo.clearbit.com/qu.edu.qa" alt="Qatar University Logo"></div>
-                    <div class="logo-item"><img src="https://logo.clearbit.com/georgetown.edu" alt="Georgetown University Logo"></div>
-                    <div class="logo-item"><img src="https://logo.clearbit.com/hec.edu" alt="HEC Paris Logo"></div>
-                    <div class="logo-item"><img src="https://logo.clearbit.com/nus.edu.sg" alt="National University of Singapore Logo"></div>
-                    <div class="logo-item"><img src="https://logo.clearbit.com/utoronto.ca" alt="University of Toronto Logo"></div>
-                    <div class="logo-item"><img src="https://logo.clearbit.com/unimelb.edu.au" alt="University of Melbourne Logo"></div>
-                    <div class="logo-item"><img src="https://logo.clearbit.com/ethz.ch" alt="ETH Zurich Logo"></div>
+                <h2>Your Journey Starts Here</h2>
+                <p class="subtitle">Fill out the form below to get your free entry pass. We can't wait to see you!</p>
+                
+                <div id="student-form-success" style="display: none; text-align: center;">
+                     <i class="fas fa-check-circle" style="font-size: 3rem; color: #4db6ac; margin-bottom: 1rem;" aria-hidden="true"></i>
+                     <h3>Registration Confirmed!</h3>
+                     <p>Thank you for registering for QELE 2026. Your free pass has been sent to your email address. See you at the event!</p>
+                     <a href="index.html" class="btn btn-primary" style="margin-top: 1rem;">Back to Home</a>
                 </div>
-                 <div class="section-cta">
-                    <a href="#" class="btn btn-primary">Register Now (Free Entry)</a>
-                </div>
+
+                <form id="student-registration-form" novalidate>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="form-student-name">Full Name *</label>
+                            <input type="text" id="form-student-name" required>
+                            <div class="error-message"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="form-student-email">Email Address *</label>
+                            <input type="email" id="form-student-email" required>
+                            <div class="error-message"></div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="form-student-phone">Phone Number (Optional)</label>
+                            <input type="tel" id="form-student-phone">
+                            <div class="error-message"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="form-student-dob">Date of Birth *</label>
+                            <input type="date" id="form-student-dob" required>
+                             <div class="error-message"></div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="form-student-nationality">Nationality *</label>
+                            <select id="form-student-nationality" required>
+                                <option value="" disabled selected>Select your nationality...</option>
+                                <option value="Qatari">Qatari</option>
+                                <option value="Indian">Indian</option>
+                                <option value="Filipino">Filipino</option>
+                                <option value="Egyptian">Egyptian</option>
+                                <option value="Pakistani">Pakistani</option>
+                                <option value="Bangladeshi">Bangladeshi</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            <div class="error-message"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="form-student-school">Current School/Institution *</label>
+                            <input type="text" id="form-student-school" required>
+                            <div class="error-message"></div>
+                        </div>
+                    </div>
+                     <div class="form-row">
+                         <div class="form-group">
+                            <label for="form-student-grade">Grade / Year of Study *</label>
+                            <select id="form-student-grade" required>
+                                <option value="" disabled selected>Select your grade...</option>
+                                <option value="Grade 10">Grade 10</option>
+                                <option value="Grade 11">Grade 11</option>
+                                <option value="Grade 12">Grade 12</option>
+                                <option value="Undergraduate">Undergraduate</option>
+                                <option value="Postgraduate">Postgraduate</option>
+                                <option value="Parent">Parent</option>
+                                <option value="Educator">Educator</option>
+                            </select>
+                            <div class="error-message"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="form-student-source">How did you hear about us? *</label>
+                            <select id="form-student-source" required>
+                                <option value="" disabled selected>Select an option...</option>
+                                <option value="Social Media">Social Media (Instagram, Facebook, etc.)</option>
+                                <option value="School">From my School / Teacher</option>
+                                <option value="Friend">Friend or Family</option>
+                                <option value="Online Search">Online Search (Google, etc.)</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            <div class="error-message"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group interest-group-container" id="form-student-interests">
+                        <label>Areas of Interest (Select at least one) *</label>
+                        <div class="interest-checkbox-group">
+                            <div class="interest-checkbox-item">
+                                <input type="checkbox" id="interest-engineering" name="interest" value="engineering">
+                                <label for="interest-engineering">Engineering & Technology</label>
+                            </div>
+                             <div class="interest-checkbox-item">
+                                <input type="checkbox" id="interest-medicine" name="interest" value="medicine">
+                                <label for="interest-medicine">Medicine & Health Sciences</label>
+                            </div>
+                            <div class="interest-checkbox-item">
+                                <input type="checkbox" id="interest-business" name="interest" value="business">
+                                <label for="interest-business">Business & Management</label>
+                            </div>
+                            <div class="interest-checkbox-item">
+                                <input type="checkbox" id="interest-arts" name="interest" value="arts">
+                                <label for="interest-arts">Arts & Humanities</label>
+                            </div>
+                            <div class="interest-checkbox-item">
+                                <input type="checkbox" id="interest-cs" name="interest" value="cs">
+                                <label for="interest-cs">Computer Science & AI</label>
+                            </div>
+                             <div class="interest-checkbox-item">
+                                <input type="checkbox" id="interest-law" name="interest" value="law">
+                                <label for="interest-law">Law & International Relations</label>
+                            </div>
+                        </div>
+                        <div class="error-message"></div>
+                    </div>
+                    
+                    <div class="form-group form-group-consent">
+                        <input type="checkbox" id="form-student-consent" required>
+                        <label for="form-student-consent">I agree to the terms and conditions and privacy policy of QELE 2026. *</label>
+                        <div class="error-message"></div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary" style="width: 100%; font-size: 1.2rem; padding: 15px;">Register Now</button>
+                </form>
             </div>
         </section>
-
     </main>
     
     <footer class="main-footer">
@@ -143,6 +248,35 @@
         </div>
     </footer>
 
+    <!-- AI Chatbot -->
+    <div id="chatbot-fab-container">
+      <div id="chatbot-bubble" class="chatbot-bubble" style="display: none;"></div>
+      <div id="chatbot-fab" role="button" aria-label="Open AI Chat">
+          <i class="fas fa-comments"></i>
+      </div>
+    </div>
+    <div id="chatbot-window" class="chatbot-window" role="dialog" aria-modal="true" aria-labelledby="chatbot-header-title">
+        <div class="chatbot-header">
+            <h3 id="chatbot-header-title">QELE AI Assistant</h3>
+            <button id="chatbot-close-btn" aria-label="Close Chat">&times;</button>
+        </div>
+        <div id="chatbot-messages" class="chatbot-messages" role="log" aria-live="polite">
+        </div>
+        <div id="chatbot-suggestions" class="chatbot-suggestions">
+        </div>
+        <form id="chatbot-form" class="chatbot-form">
+            <div class="chatbot-input-wrapper">
+                <input type="text" id="chatbot-input" placeholder="Ask a question..." autocomplete="off" aria-label="Your message">
+                <button type="submit" aria-label="Send Message"><i class="fas fa-paper-plane"></i></button>
+            </div>
+            <div class="form-group-consent-chatbot">
+                <input type="checkbox" id="chatbot-consent" name="chatbot-consent" required>
+                <label for="chatbot-consent">I consent to the processing of my data.</label>
+                <div class="error-message"></div>
+            </div>
+        </form>
+    </div>
+
     <!-- Exit Intent Modal -->
     <div id="exit-intent-modal" class="modal-overlay">
         <div class="modal-content exit-intent-content" role="dialog" aria-modal="true" aria-labelledby="exit-modal-title">
@@ -151,6 +285,14 @@
             <p>Get our official Exhibitor & Sponsorship Deck, including the floor plan and ROI details, sent straight to your inbox.</p>
             <a href="contact.html" class="btn btn-primary">Get The Deck</a>
         </div>
+    </div>
+
+    <!-- Mobile Sticky Bar -->
+    <div id="mobile-sticky-bar">
+        <a href="student-registration.html" class="mobile-cta-btn"><i class="fas fa-user-check"></i><span>Register</span></a>
+        <a href="universities.html" class="mobile-cta-btn"><i class="fas fa-graduation-cap"></i><span>Student</span></a>
+        <a href="floor-plan.html" class="mobile-cta-btn"><i class="fas fa-chalkboard-user"></i><span>Exhibitor</span></a>
+        <a href="sponsorship-tiers.html" class="mobile-cta-btn"><i class="fas fa-star"></i><span>Sponsor</span></a>
     </div>
     
     <script src="https://unpkg.com/@panzoom/panzoom@4.5.1/dist/panzoom.min.js"></script>
