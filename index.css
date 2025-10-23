@@ -960,15 +960,23 @@ section {
 }
 .urgency-cta-section p {
     max-width: 600px;
-    margin: 0 auto 1.5rem;
+    margin: 0 auto 1rem;
     font-size: 1.1rem;
+}
+
+.urgency-cta-section .countdown-label {
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-color);
 }
 
 #early-bird-countdown {
     display: flex;
     gap: 1rem;
     justify-content: center;
-    margin: 1.5rem auto;
+    margin: 0.5rem auto 0;
     max-width: 450px;
 }
 #early-bird-countdown .timer-unit {
@@ -1003,7 +1011,7 @@ section {
 }
 
 .prime-booth-counter {
-    margin: 1.5rem 0 2rem;
+    margin: 1.5rem 0 0;
     font-weight: 700;
     font-size: 1.1rem;
 }
@@ -1016,6 +1024,10 @@ section {
     -webkit-text-fill-color: transparent;
     font-size: 1.5rem;
     vertical-align: middle;
+}
+
+.urgency-cta-section .btn {
+    margin-top: 2rem;
 }
 
 
