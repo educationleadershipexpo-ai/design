@@ -2065,10 +2065,17 @@ input.invalid {
     margin-bottom: 2rem;
 }
 
-/* --- Sponsorship Tiers (OLD) --- */
-#sponsorship-details h2, #sponsorship-details h3 {
+/* --- Sponsorship Tiers (NEW V3 Styles) --- */
+#sponsorship-details h2, #sponsorship-details h3,
+#exclusive-branding h2, #exclusive-branding h3 {
     text-align: left;
 }
+#sponsorship-details .subtitle,
+#exclusive-branding .subtitle {
+    text-align: left;
+    margin-left: 0;
+}
+
 .tiers-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
@@ -2102,6 +2109,7 @@ input.invalid {
     font-size: 1.8rem;
     color: inherit;
     margin-bottom: 0.25rem;
+    text-align: left;
 }
 .tier-subtitle {
     font-weight: 700;
@@ -2122,6 +2130,7 @@ input.invalid {
     font-size: 1.1rem;
     font-weight: 700;
     margin-bottom: 1rem;
+    text-align: left;
 }
 .tier-benefits {
     list-style: none;
@@ -2144,13 +2153,14 @@ input.invalid {
     top: 4px;
     color: #d12386;
 }
+/* A simple way to create columns with CSS */
 .tier-benefits.two-column-list {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 0.75rem 1.5rem;
 }
 .tier-benefits.two-column-list li {
-    margin-bottom: 0;
+    margin-bottom: 0; /* Remove bottom margin for grid items */
 }
 .tier-footer {
     padding: 0 2rem 2rem;
@@ -2162,52 +2172,42 @@ input.invalid {
 
 .sponsorship-addons-grid {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2rem;
-    margin-top: 4rem;
+    margin-top: 2rem;
 }
-.sponsorship-extra-section {
-    margin-top: 4rem;
-    padding: 3rem;
-    background: var(--white);
+.sponsorship-addons-grid .a-la-carte-card {
+    background: var(--surface-color);
+    padding: 2.5rem 2rem;
     border-radius: 15px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05), 0 10px 20px rgba(0,0,0,0.05);
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: 1px solid transparent;
 }
-.sponsorship-addons-grid .sponsorship-extra-section {
-    margin-top: 0;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
+.sponsorship-addons-grid .a-la-carte-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow);
+    background: var(--white);
+    border-color: var(--border-color);
 }
-#exclusive-branding h2 i,
-#email-campaigns h2 i {
-    margin-right: 0.75rem;
+.sponsorship-addons-grid .a-la-carte-card i {
+    font-size: 3rem;
     background: var(--gradient);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    margin-bottom: 1.5rem;
 }
-.branding-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 1.5rem;
-    font-size: 1rem;
+.sponsorship-addons-grid .a-la-carte-card h4 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
 }
-.branding-table th, .branding-table td {
-    padding: 1rem 1.25rem;
-    text-align: left;
-    border-bottom: 1px solid var(--border-color);
+.sponsorship-addons-grid .a-la-carte-card p {
+    font-size: 0.95rem;
+    color: #555;
+    margin-bottom: 0;
 }
-.branding-table thead th {
-    background: var(--surface-color);
-    font-family: var(--heading-font);
-    font-weight: 700;
-}
-.branding-table tbody tr:last-child td {
-    border-bottom: none;
-}
-.branding-table tbody tr:hover {
-    background-color: #f8f8f8;
-}
+
 
 /* --- NEW Sponsorship Page V2 Styles --- */
 /* Sponsorship Intro Section */
@@ -2223,168 +2223,6 @@ input.invalid {
 #sponsorship-intro .subtitle {
     text-align: left;
     margin-left: 0;
-}
-
-/* Comparison Table */
-.comparison-table-wrapper {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    padding-bottom: 1rem;
-    margin-top: 3rem;
-    border: 1px solid var(--border-color);
-    border-radius: 15px;
-    box-shadow: var(--shadow);
-}
-.comparison-table {
-    width: 100%;
-    min-width: 900px;
-    border-collapse: collapse;
-    text-align: center;
-}
-.comparison-table th, .comparison-table td {
-    padding: 1rem;
-    border-left: 1px solid var(--border-color);
-    vertical-align: middle;
-}
-.comparison-table th:first-child, .comparison-table td:first-child {
-    border-left: none;
-}
-
-.comparison-table thead th {
-    background: var(--white);
-    border-left: 1px solid var(--border-color);
-    padding: 1.5rem 1rem;
-    vertical-align: bottom;
-}
-.comparison-table thead h3 {
-    font-size: 1.6rem;
-    margin: 0 0 0.25rem;
-    text-align: center;
-}
-.comparison-table thead span {
-    font-weight: 700;
-    font-size: 0.9rem;
-    color: #555;
-}
-.comparison-table .tier-header-gold {
-    border: 3px solid #711fb8;
-    border-bottom: none;
-    border-top-left-radius: 12px;
-    border-top-right-radius: 12px;
-    position: relative;
-    transform: scale(1.05);
-    z-index: 2;
-}
-.comparison-table .tier-header-gold .popular-badge {
-    position: absolute;
-    top: -15px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #711fb8;
-    color: var(--white);
-    padding: 6px 15px;
-    border-radius: 50px;
-    box-shadow: none;
-    font-size: 0.8rem;
-    white-space: nowrap;
-    font-weight: 700;
-}
-.comparison-table th:first-child {
-    text-align: left;
-    background: transparent;
-    font-size: 1.5rem;
-    font-family: var(--heading-font);
-    font-weight: 800;
-    color: var(--text-color);
-    width: 30%;
-}
-.comparison-table tbody td {
-    background: var(--white);
-}
-.comparison-table tbody td:first-child {
-    text-align: left;
-    font-weight: 700;
-    background-color: var(--surface-color);
-    padding-left: 1.5rem;
-}
-.comparison-table tbody td .fa-check {
-    color: #4db6ac;
-    font-size: 1.3rem;
-}
-.comparison-table tbody td:not(:first-child) {
-    font-weight: 600;
-}
-.comparison-table tr.feature-category td {
-    background-color: #f1f3f5;
-    font-weight: 800;
-    color: var(--text-color);
-    text-align: left;
-    padding-left: 1.5rem;
-    font-size: 1.1rem;
-    border-top: 1px solid var(--border-color);
-    border-bottom: 1px solid var(--border-color);
-}
-.comparison-table tr.cta-row td {
-    padding-top: 2rem;
-    border-top: 1px solid var(--border-color);
-}
-.comparison-table td.popular {
-    border-left: 3px solid #711fb8;
-    border-right: 3px solid #711fb8;
-}
-.comparison-table tr:last-child td.popular {
-     border-bottom: 3px solid #711fb8;
-     border-bottom-left-radius: 12px;
-     border-bottom-right-radius: 12px;
-}
-.comparison-table td:not(:first-child) {
-    width: 23.33%;
-}
-
-
-/* A La Carte Sponsorships */
-#a-la-carte-sponsorships h2 {
-    text-align: left;
-}
-#a-la-carte-sponsorships .subtitle {
-    text-align: left;
-    margin-left: 0;
-}
-.a-la-carte-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
-}
-.a-la-carte-card {
-    background: var(--surface-color);
-    padding: 2.5rem 2rem;
-    border-radius: 15px;
-    text-align: center;
-    transition: transform 0.3s, box-shadow 0.3s;
-    border: 1px solid transparent;
-}
-.a-la-carte-card:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--shadow);
-    background: var(--white);
-    border-color: var(--border-color);
-}
-.a-la-carte-card i {
-    font-size: 3rem;
-    background: var(--gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin-bottom: 1.5rem;
-}
-.a-la-carte-card h4 {
-    font-size: 1.3rem;
-    margin-bottom: 0.5rem;
-}
-.a-la-carte-card p {
-    font-size: 0.95rem;
-    color: #555;
-    margin-bottom: 0;
 }
 
 /* Past Partners Showcase */
@@ -2500,8 +2338,7 @@ input.invalid {
 
 @media (min-width: 992px) {
     .sponsorship-addons-grid {
-        grid-template-columns: repeat(2, 1fr);
-        align-items: stretch;
+        grid-template-columns: repeat(4, 1fr);
     }
 }
 
@@ -2707,78 +2544,5 @@ input.invalid {
     }
     .tiers-grid {
         grid-template-columns: 1fr;
-    }
-    .sponsorship-extra-section {
-        padding: 2rem;
-    }
-    .branding-table, .branding-table tbody, .branding-table tr, .branding-table td {
-        display: block;
-    }
-    .comparison-table {
-        min-width: 0;
-    }
-    .comparison-table thead {
-        display: none;
-    }
-    .comparison-table, .comparison-table tbody, .comparison-table tr, .comparison-table td {
-        display: block;
-        width: 100%;
-    }
-    .comparison-table tr {
-        margin-bottom: 1rem;
-        border: 1px solid var(--border-color);
-        border-radius: 10px;
-        overflow: hidden;
-    }
-    .comparison-table td {
-        text-align: right;
-        padding-left: 50%;
-        position: relative;
-        border-left: none;
-    }
-    .comparison-table td::before {
-        content: attr(data-label);
-        position: absolute;
-        left: 1rem;
-        width: 45%;
-        padding-right: 1rem;
-        text-align: left;
-        font-weight: bold;
-    }
-    .comparison-table td.popular {
-        border: 2px solid #711fb8;
-    }
-     .comparison-table tr.feature-category {
-        border: none;
-        margin-bottom: 0;
-    }
-    .comparison-table tr.feature-category td {
-        background: transparent;
-        font-size: 1.5rem;
-        text-align: center;
-        padding: 1rem 0;
-        font-weight: 800;
-        color: var(--text-color);
-        border-top: none;
-    }
-    .comparison-table tr.feature-category td::before {
-        content: none;
-    }
-     .comparison-table tr.cta-row {
-         border: none;
-         display: grid;
-         grid-template-columns: 1fr;
-         gap: 1rem;
-     }
-      .comparison-table tr.cta-row td {
-        padding: 0;
-        text-align: center;
-        border: none;
-    }
-    .comparison-table tr.cta-row td::before {
-        content: none;
-    }
-    .comparison-table tr.cta-row .btn {
-        width: 100%;
     }
 }
