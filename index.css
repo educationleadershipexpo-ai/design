@@ -1407,18 +1407,34 @@ textarea.invalid {
 
 .contact-grid {
     display: grid;
-    grid-template-columns: 1fr 1.2fr;
-    gap: 3rem;
+    grid-template-columns: minmax(320px, 400px) 1fr;
+    gap: 0;
     background: var(--white);
-    padding: 3rem;
     border-radius: 15px;
     box-shadow: var(--shadow);
+    overflow: hidden;
+}
+
+.contact-details {
+    background: var(--gradient);
+    color: var(--white);
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-form-container {
+    padding: 3rem;
 }
 
 .contact-details h3, .contact-form-container h3 {
     text-align: left;
     margin-top: 0;
     margin-bottom: 1.5rem;
+}
+
+.contact-details h3 {
+    color: var(--white);
 }
 
 .contact-form-container p {
@@ -1446,37 +1462,44 @@ textarea.invalid {
     margin-top: 5px;
     width: 25px;
     text-align: center;
-    background: var(--gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    background: none;
+    -webkit-background-clip: unset;
+    -webkit-text-fill-color: unset;
+    color: rgba(255, 255, 255, 0.85);
 }
 
 .contact-info-list p {
     margin: 0;
-    color: #555;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.contact-info-list strong {
+    color: var(--white);
+    display: block;
+    margin-bottom: 0.25rem;
 }
 
 .contact-info-list a {
-    color: var(--text-color);
+    color: var(--white);
     text-decoration: none;
     font-weight: 600;
 }
 .contact-info-list a:hover {
-    color: #d12386;
+    color: rgba(255, 255, 255, 0.8);
 }
 
 .social-links-contact {
     display: flex;
     gap: 1.5rem;
-    margin-bottom: 2.5rem;
+    margin-top: auto;
 }
 .social-links-contact a {
-    color: var(--text-color);
+    color: var(--white);
     font-size: 1.8rem;
     transition: color 0.3s, transform 0.3s;
 }
 .social-links-contact a:hover {
-    color: #d12386;
+    color: rgba(255, 255, 255, 0.8);
     transform: translateY(-3px);
 }
 
@@ -2469,6 +2492,8 @@ textarea.invalid {
 @media (max-width: 992px) {
     .contact-grid {
         grid-template-columns: 1fr;
+    }
+    .contact-details, .contact-form-container {
         padding: 2rem;
     }
 }
