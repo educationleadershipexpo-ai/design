@@ -1326,6 +1326,7 @@ section {
 input[type="text"],
 input[type="email"],
 input[type="tel"],
+input[type="date"],
 textarea,
 select {
     width: 100%;
@@ -1335,11 +1336,13 @@ select {
     font-family: var(--primary-font);
     font-size: 1rem;
     transition: border-color 0.3s, box-shadow 0.3s;
+    background-color: var(--white);
 }
 
 input[type="text"]:focus,
 input[type="email"]:focus,
 input[type="tel"]:focus,
+input[type="date"]:focus,
 textarea:focus,
 select:focus {
     outline: none;
@@ -2545,4 +2548,13 @@ input.invalid {
     .tiers-grid {
         grid-template-columns: 1fr;
     }
+}
+
+.required-asterisk {
+    color: #e74c3c;
+    margin-left: 2px;
+}
+
+#booth-registration-form-section .form-group label {
+    font-weight: 600;
 }
