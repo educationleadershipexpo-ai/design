@@ -1,5 +1,4 @@
 
-
 :root {
     --gradient: linear-gradient(to right, #d12386, #711fb8);
     --primary-font: 'Poppins', sans-serif;
@@ -1403,42 +1402,46 @@ textarea.invalid {
 /* --- Contact Page Styles --- */
 #contact-page-section {
     padding: 80px 0;
+    background: var(--gradient);
 }
 
 .contact-grid {
     display: grid;
-    grid-template-columns: minmax(320px, 400px) 1fr;
-    gap: 0;
-    background: var(--white);
-    border-radius: 15px;
-    box-shadow: var(--shadow);
-    overflow: hidden;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 4rem;
+    align-items: center;
 }
 
 .contact-details {
-    background: var(--gradient);
     color: var(--white);
-    padding: 3rem;
-    display: flex;
-    flex-direction: column;
+}
+
+.contact-details h2 {
+    text-align: left;
+    color: var(--white);
+    font-size: 2.2rem;
+}
+
+.contact-details p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.1rem;
+    margin-bottom: 2.5rem;
 }
 
 .contact-form-container {
+    background-color: var(--white);
     padding: 3rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
 
-.contact-details h3, .contact-form-container h3 {
+.contact-form-container h3,
+.contact-form-container p {
     text-align: left;
     margin-top: 0;
-    margin-bottom: 1.5rem;
-}
-
-.contact-details h3 {
-    color: var(--white);
 }
 
 .contact-form-container p {
-    text-align: left;
     margin-top: -1rem;
     margin-bottom: 1.5rem;
     font-size: 0.95rem;
@@ -1447,35 +1450,32 @@ textarea.invalid {
 .contact-info-list {
     list-style: none;
     padding: 0;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
 }
 
 .contact-info-list li {
     display: flex;
-    align-items: flex-start; /* Changed from center to top-align for a cleaner look */
-    gap: 1rem;
-    margin-bottom: 1.5rem;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
 }
 
 .contact-info-list i {
-    font-size: 1.5rem;
-    width: 25px;
+    font-size: 1.8rem;
+    width: 30px;
     text-align: center;
-    background: none;
-    -webkit-background-clip: unset;
-    -webkit-text-fill-color: unset;
-    color: rgba(255, 255, 255, 0.85);
-    margin-top: 3px; /* Optically align icon with the first line of text */
 }
 
 .contact-info-list p {
     margin: 0;
+    font-size: 0.95rem;
     color: rgba(255, 255, 255, 0.85);
 }
 
 .contact-info-list strong {
     color: var(--white);
     display: block;
+    font-size: 1.1rem;
     margin-bottom: 0.25rem;
 }
 
@@ -1485,13 +1485,20 @@ textarea.invalid {
     font-weight: 600;
 }
 .contact-info-list a:hover {
-    color: rgba(255, 255, 255, 0.8);
+    text-decoration: underline;
+}
+
+.contact-socials-title {
+    color: var(--white);
+    font-size: 1.2rem;
+    text-align: left;
+    margin-bottom: 1rem;
+    margin-top: 0;
 }
 
 .social-links-contact {
     display: flex;
     gap: 1.5rem;
-    margin-top: auto;
 }
 .social-links-contact a {
     color: var(--white);
@@ -2492,8 +2499,18 @@ textarea.invalid {
 @media (max-width: 992px) {
     .contact-grid {
         grid-template-columns: 1fr;
+        gap: 2rem;
     }
-    .contact-details, .contact-form-container {
+    .contact-details {
+       text-align: center;
+    }
+     .contact-details h2, .contact-details .contact-socials-title {
+        text-align: center;
+     }
+     .social-links-contact {
+        justify-content: center;
+     }
+    .contact-form-container {
         padding: 2rem;
     }
 }
