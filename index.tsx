@@ -82,7 +82,6 @@
             
             case 'form-phone':
             case 'form-student-phone':
-            case 'form-booth-phone':
                 const phoneRegex = /^[\d\s()+-]+$/;
                 if (value !== '' && !phoneRegex.test(value)) {
                     showError(field, 'Please enter a valid phone number.');
@@ -117,50 +116,6 @@
                 break;
         }
         return isValid;
-    }
-
-    // --- Generic Modal Handling ---
-    function initializeModals() {
-        const openModal = (modal: HTMLElement) => {
-            if (modal) modal.classList.add('visible');
-        };
-
-        const closeModal = (modal: HTMLElement) => {
-            if (modal) modal.classList.remove('visible');
-        };
-
-        // Open modal triggers
-        document.querySelectorAll('[data-modal-trigger]').forEach(trigger => {
-            trigger.addEventListener('click', (e) => {
-                e.preventDefault();
-                const modalId = (trigger as HTMLElement).dataset.modalTrigger;
-                if (modalId) {
-                    const modal = document.getElementById(modalId);
-                    if (modal) openModal(modal);
-                }
-            });
-        });
-
-        // Close modal triggers (buttons and overlay)
-        document.querySelectorAll('.modal-overlay').forEach(modal => {
-            modal.querySelectorAll('.modal-close-btn, #success-close-btn').forEach(btn => {
-                btn.addEventListener('click', () => closeModal(modal as HTMLElement));
-            });
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    closeModal(modal as HTMLElement);
-                }
-            });
-        });
-        
-        // Close with Escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                document.querySelectorAll('.modal-overlay.visible').forEach(modal => {
-                    closeModal(modal as HTMLElement);
-                });
-            }
-        });
     }
 
 
@@ -459,66 +414,130 @@
         });
     }
 
-    // --- Booth Booking Modal Form Logic ---
-    function initializeBoothBookingForm() {
-        const modal = document.getElementById('booth-booking-modal');
-        if (!modal) return;
+    // --- Interactive Floor Plan Logic (New 2D Version) ---
+    const floorPlanContainer = document.getElementById('floor-plan-container');
+    if (floorPlanContainer) {
+        const map = document.getElementById('floor-plan-map');
+        const tooltip = document.getElementById('floor-plan-tooltip');
+        const filterButtons = document.querySelectorAll('.fp-filter-btn');
+
+        const boothData = [
+            { id: 'B01', size: '3X3', package: 'basic', status: 'available' }, { id: 'B02', size: '3X3', package: 'basic', status: 'available' }, { id: 'B03', size: '3X3', package: 'basic', status: 'sold' }, { id: 'spacer1', size: '', package: '', status: 'spacer' }, { id: 'B04', size: '3X3', package: 'basic', status: 'available' }, { id: 'B05', size: '3X3', package: 'basic', status: 'sold' }, { id: 'B06', size: '3X3', package: 'basic', status: 'available' }, { id: 'spacer2', size: '', package: '', status: 'spacer' }, { id: 'S01', size: '3X3', package: 'silver', status: 'reserved' }, { id: 'S02', size: '3X3', package: 'silver', status: 'available' }, { id: 'S03', size: '3X3', package: 'silver', status: 'sold' }, { id: 'S04', size: '3X3', package: 'silver', status: 'available' },
+            { id: 'B07', size: '3X3', package: 'basic', status: 'available' }, { id: 'B08', size: '3X3', package: 'basic', status: 'reserved' }, { id: 'B09', size: '3X3', package: 'basic', status: 'available' }, { id: 'spacer3', size: '', package: '', status: 'spacer' }, { id: 'B10', size: '3X3', package: 'basic', status: 'available' }, { id: 'B11', size: '3X3', package: 'basic', status: 'available' }, { id: 'B12', size: '3X3', package: 'basic', status: 'available' }, { id: 'spacer4', size: '', package: '', status: 'spacer' }, { id: 'S05', size: '3X3', package: 'silver', status: 'available' }, { id: 'S06', size: '3X3', package: 'silver', status: 'available' }, { id: 'S07', size: '3X3', package: 'silver', status: 'sold' }, { id: 'S08', size: '3X3', package: 'silver', status: 'available' },
+            { id: 'B13', size: '3X3', package: 'basic', status: 'sold' }, { id: 'B14', size: '3X3', package: 'basic', status: 'available' }, { id: 'B15', size: '3X3', package: 'basic', status: 'available' }, { id: 'spacer5', size: '', package: '', status: 'spacer' }, { id: 'B16', size: '3X3', package: 'basic', status: 'sold' }, { id: 'B17', size: '3X3', package: 'basic', status: 'available' }, { id: 'B18', size: '3X3', package: 'basic', status: 'available' }, { id: 'spacer6', size: '', package: '', status: 'spacer' }, { id: 'S09', size: '3X3', package: 'silver', status: 'available' }, { id: 'S10', size: '3X3', package: 'silver', status: 'reserved' }, { id: 'S11', size: '3X3', package: 'silver', status: 'available' }, { id: 'S12', size: '3X3', package: 'silver', status: 'available' },
+            { id: 'B19', size: '3X3', package: 'basic', status: 'available' }, { id: 'B20', size: '3X3', package: 'basic', status: 'available' }, { id: 'B21', size: '3X3', package: 'basic', status: 'sold' }, { id: 'B22', size: '3X3', package: 'basic', status: 'available' }, { id: 'spacer7', size: '', package: '', status: 'spacer' }, { id: 'B23', size: '3X3', package: 'basic', status: 'available' }, { id: 'B24', size: '3X3', package: 'basic', status: 'reserved' }, { id: 'B25', size: '3X3', package: 'basic', status: 'available' }, { id: 'spacer8', size: '', package: '', status: 'spacer' }, { id: 'S13', size: '3X3', package: 'silver', status: 'sold' }, { id: 'S14', size: '3X3', package: 'silver', status: 'available' }, { id: 'S15', size: '3X3', package: 'silver', status: 'available' },
+            { id: 'midspacer1', size: '', package: '', status: 'mid-spacer' },
+            { id: 'S20', size: '4X3', package: 'silver', status: 'available' }, { id: 'S21', size: '4X3', package: 'silver', status: 'available' }, { id: 'spacer9', size: '', package: '', status: 'spacer' }, { id: 'G01', size: '4X3', package: 'gold', status: 'reserved' }, { id: 'G02', size: '4X3', package: 'gold', status: 'available' }, { id: 'G03', size: '4X3', package: 'gold', status: 'sold' }, { id: 'spacer10', size: '', package: '', status: 'spacer' }, { id: 'S22', size: '4X3', package: 'silver', status: 'available' }, { id: 'S23', size: '4X3', package: 'silver', status: 'available' }, { id: 'spacer11', size: '', package: '', status: 'spacer' }, { id: 'G04', size: '4X3', package: 'gold', status: 'reserved' },
+            { id: 'S24', size: '4X3', package: 'silver', status: 'sold' }, { id: 'S25', size: '4X3', package: 'silver', status: 'available' }, { id: 'spacer12', size: '', package: '', status: 'spacer' }, { id: 'G05', size: '4X3', package: 'gold', status: 'available' }, { id: 'G06', size: '4X3', package: 'gold', status: 'available' }, { id: 'G07', size: '4X3', package: 'gold', status: 'available' }, { id: 'spacer13', size: '', package: '', status: 'spacer' }, { id: 'S26', size: '4X3', package: 'silver', status: 'available' }, { id: 'S27', size: '4X3', package: 'silver', status: 'available' }, { id: 'spacer14', size: '', package: '', status: 'spacer' }, { id: 'G08', size: '4X3', package: 'gold', status: 'available' },
+            { id: 'midspacer2', size: '', package: '', status: 'mid-spacer' },
+            { id: 'bigspacer1', size: '', package: '', status: 'big-spacer' }, { id: 'G09', size: '6X3', package: 'gold', status: 'reserved' }, { id: 'bigspacer2', size: '', package: '', status: 'big-spacer' }, { id: 'G10', size: '6X3', package: 'gold', status: 'sold' }, { id: 'bigspacer3', size: '', package: '', status: 'big-spacer' },
+            { id: 'midspacer3', size: '', package: '', status: 'mid-spacer' },
+            { id: 'P01', size: '7X3', package: 'platinum', status: 'available' }, { id: 'bigspacer4', size: '', package: '', status: 'big-spacer' }, { id: 'P02', size: '7X3', package: 'platinum', status: 'available' }, { id: 'bigspacer5', size: '', package: '', status: 'big-spacer' }, { id: 'P03', size: '7X3', package: 'platinum', status: 'sold' },
+        ];
         
-        const form = modal.querySelector('#booth-booking-form') as HTMLFormElement;
-        const formContent = modal.querySelector('#booth-form-content');
-        const successMessage = modal.querySelector('#booth-form-success');
-
-        if (!form || !formContent || !successMessage) return;
-
-        const nameInput = form.querySelector('#form-booth-name') as HTMLInputElement;
-        const companyInput = form.querySelector('#form-booth-company') as HTMLInputElement;
-        const emailInput = form.querySelector('#form-booth-email') as HTMLInputElement;
-        const phoneInput = form.querySelector('#form-booth-phone') as HTMLInputElement;
-        const interestSelect = form.querySelector('#form-modal-interest') as HTMLSelectElement;
-        const consentCheckbox = form.querySelector('#form-booth-consent') as HTMLInputElement;
-        
-        const inputs: HTMLElement[] = [nameInput, companyInput, emailInput, phoneInput, interestSelect, consentCheckbox];
-
-        inputs.forEach(input => {
-            if (!input) return;
-            const eventType = input.tagName.toLowerCase() === 'select' || (input as HTMLInputElement).type === 'checkbox' ? 'change' : 'input';
-            input.addEventListener(eventType, () => validateField(input));
-        });
-
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const isFormValid = inputs.map(input => validateField(input)).every(Boolean);
-
-            if (isFormValid) {
-                const selectedPackage = interestSelect.options[interestSelect.selectedIndex].text;
-                const successPackageEl = successMessage.querySelector('#success-booth-package');
-                if(successPackageEl) {
-                    successPackageEl.textContent = selectedPackage;
+        // 1. Render Booths
+        if(map) {
+            boothData.forEach(data => {
+                if(data.status === 'spacer' || data.status === 'mid-spacer' || data.status === 'big-spacer') {
+                    const spacer = document.createElement('div');
+                    spacer.className = `booth-spacer ${data.status}`;
+                    if (data.status === 'mid-spacer') spacer.style.gridColumn = 'span 12';
+                    if (data.status === 'big-spacer') spacer.style.gridColumn = 'span 3';
+                    if (data.id === 'bigspacer1' || data.id === 'bigspacer4') spacer.style.gridColumn = 'span 2';
+                    map.appendChild(spacer);
+                    return;
                 }
-                formContent.style.display = 'none';
-                successMessage.style.display = 'block';
+                
+                const booth = document.createElement('div');
+                booth.className = `booth ${data.status} ${data.package}`;
+                booth.dataset.id = data.id;
+                booth.dataset.package = data.package;
+                booth.dataset.status = data.status;
+                booth.textContent = data.size;
+
+                if (data.size === '4X3') booth.style.gridColumn = 'span 2';
+                if (data.size === '6X3') booth.style.gridColumn = 'span 4';
+                if (data.size === '7X3') booth.style.gridColumn = 'span 5';
+
+                map.appendChild(booth);
+            });
+        }
+
+        // 2. Update Status Counts
+        const updateStatusCounts = () => {
+        const counts = { available: 0, reserved: 0, sold: 0 };
+        boothData.forEach(booth => {
+            if (counts[booth.status as keyof typeof counts] !== undefined) {
+                counts[booth.status as keyof typeof counts]++;
             }
         });
 
-        // Reset form when modal is closed using a MutationObserver
-        const observer = new MutationObserver((mutationsList) => {
-            for (const mutation of mutationsList) {
-                if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
-                    const modalEl = mutation.target as HTMLElement;
-                    if (!modalEl.classList.contains('visible')) {
-                        // Wait for modal to close before resetting form to avoid visual flicker
-                        setTimeout(() => {
-                            formContent.style.display = 'block';
-                            successMessage.style.display = 'none';
-                            form.reset();
-                            inputs.forEach(input => clearError(input));
-                        }, 300); // Should match modal transition duration
-                    }
-                }
-            }
+        document.getElementById('available-count')!.textContent = counts.available.toString();
+        document.getElementById('reserved-count')!.textContent = counts.reserved.toString();
+        document.getElementById('sold-count')!.textContent = counts.sold.toString();
+        };
+        
+        // 3. Handle Filtering
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const filter = button.getAttribute('data-filter');
+                
+                // Update button styles
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                
+                // Filter booths
+                document.querySelectorAll('.booth').forEach(boothEl => {
+                    const booth = boothEl as HTMLElement;
+                    const packageType = booth.dataset.package;
+                    const shouldShow = filter === 'all' || packageType === filter;
+                    booth.classList.toggle('hidden', !shouldShow);
+                });
+            });
         });
-        observer.observe(modal, { attributes: true });
+
+        // 4. Handle Tooltip
+        if (map && tooltip) {
+            map.addEventListener('mouseover', (e) => {
+                const target = e.target as HTMLElement;
+                if (target.classList.contains('booth')) {
+                    const id = target.dataset.id;
+                    const pkg = target.dataset.package;
+                    const status = target.dataset.status;
+                    
+                    tooltip.innerHTML = `
+                        <strong>Booth ${id}</strong>
+                        <p>Package: <span>${pkg}</span></p>
+                        <p>Status: <span class="status-${status}">${status}</span></p>
+                    `;
+                    tooltip.style.display = 'block';
+                }
+            });
+
+            map.addEventListener('mousemove', (e) => {
+                if (tooltip.style.display === 'block') {
+                    // Position tooltip relative to the container
+                    const containerRect = floorPlanContainer.getBoundingClientRect();
+                    const x = e.clientX - containerRect.left;
+                    const y = e.clientY - containerRect.top;
+                    
+                    tooltip.style.left = `${x + 15}px`;
+                    tooltip.style.top = `${y + 15}px`;
+                }
+            });
+
+            map.addEventListener('mouseout', (e) => {
+                const target = e.target as HTMLElement;
+                if (target.classList.contains('booth')) {
+                    tooltip.style.display = 'none';
+                }
+            });
+        }
+
+        // Initial setup
+        updateStatusCounts();
     }
+
 
     // --- AI Chatbot Logic ---
     function initializeChatbot() {
@@ -751,6 +770,8 @@
                     let message = '';
                     if (entry.target.id === 'booth-packages') {
                         message = 'Questions about packages?';
+                    } else if (entry.target.id === 'floor-plan-container') {
+                        message = 'Need help choosing a booth?';
                     }
                     
                     if (message) {
@@ -761,7 +782,9 @@
         }, { threshold: 0.6 });
 
         const sponsorshipSection = document.getElementById('booth-packages');
+        const boothsSection = document.getElementById('floor-plan-container');
         if (sponsorshipSection) observer.observe(sponsorshipSection);
+        if (boothsSection) observer.observe(boothsSection);
     }
 
     // --- FAQ Accordion ---
@@ -784,6 +807,7 @@
         const modal = document.getElementById('exit-intent-modal');
         if (!modal) return;
 
+        const closeModalBtn = modal.querySelector('.modal-close-btn');
         const modalShownInSession = sessionStorage.getItem('exitModalShown') === 'true';
 
         if (modalShownInSession) {
@@ -797,6 +821,10 @@
             document.removeEventListener('mouseout', handleMouseOut);
             window.removeEventListener('scroll', handleScroll);
             clearTimeout(timer);
+        };
+
+        const hideModal = () => {
+            modal.classList.remove('visible');
         };
 
         const handleMouseOut = (e: MouseEvent) => {
@@ -819,7 +847,45 @@
         document.addEventListener('mouseout', handleMouseOut);
         window.addEventListener('scroll', handleScroll);
 
-        // Closing is handled by the generic initializeModals function
+        // Add closing event listeners
+        closeModalBtn?.addEventListener('click', hideModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                hideModal();
+            }
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('visible')) {
+                hideModal();
+            }
+        });
+    }
+
+    // --- Dynamic Partner Logos ---
+    function initializePastPartners() {
+        const logoGrid = document.querySelector('.logo-grid');
+        if (!logoGrid || logoGrid.id === 'home-partners-grid') return; // Ensure we are on the right page
+
+        const partners = [
+            "microsoft.com", "cambridge.org", "coursera.org", "qf.org.qa",
+            "britishcouncil.org", "idp.com", "ooredoo.qa", "vodafone.com"
+        ];
+        
+        logoGrid.innerHTML = ''; // Clear existing static logos
+
+        partners.forEach(domain => {
+            const logoItem = document.createElement('div');
+            logoItem.className = 'logo-item';
+            
+            const img = document.createElement('img');
+            img.src = `https://logo.clearbit.com/${domain}`;
+            
+            const altText = domain.split('.')[0];
+            img.alt = `${altText.charAt(0).toUpperCase() + altText.slice(1)} Logo`;
+            
+            logoItem.appendChild(img);
+            logoGrid.appendChild(logoItem);
+        });
     }
     
     // --- Dynamic Partner Logos for Homepage ---
@@ -852,36 +918,6 @@
         });
     }
 
-    // --- Dynamic Partner Logos for Sponsorship Page ---
-    function initializeSponsorPagePartners() {
-        const logoGrid = document.getElementById('sponsor-partners-grid');
-        if (!logoGrid) return;
-
-        const partners = [
-            { src: 'https://logo.clearbit.com/microsoft.com', alt: 'Microsoft Logo' },
-            { src: 'https://logo.clearbit.com/google.com', alt: 'Google for Education Logo' },
-            { src: 'https://logo.clearbit.com/coursera.org', alt: 'Coursera Logo' },
-            { src: 'https://logo.clearbit.com/qf.org.qa', alt: 'Qatar Foundation Logo' },
-            { src: 'https://logo.clearbit.com/qu.edu.qa', alt: 'Qatar University Logo' },
-            { src: 'https://logo.clearbit.com/britishcouncil.org', alt: 'British Council Logo' },
-            { src: 'https://logo.clearbit.com/vodafone.com', alt: 'Vodafone Logo' },
-            { src: 'https://logo.clearbit.com/qnb.com', alt: 'QNB Logo' },
-        ];
-        
-        logoGrid.innerHTML = '';
-
-        partners.forEach(partner => {
-            const logoItem = document.createElement('div');
-            logoItem.className = 'logo-item';
-            const img = document.createElement('img');
-            img.src = partner.src;
-            img.alt = partner.alt;
-            logoItem.appendChild(img);
-            logoGrid.appendChild(logoItem);
-        });
-    }
-
-
     // --- Agenda Page Tabs ---
     function initializeAgendaTabs() {
         const tabsContainer = document.querySelector('.agenda-tabs');
@@ -912,15 +948,13 @@
     highlightActiveNav();
     initializeMobileNav();
     initializeDropdowns();
-    initializeModals();
-    initializeBoothBookingForm();
     initializeStudentRegistrationForm();
     initializeChatbot();
     initializeProactiveChat();
     initializeFaqAccordion();
     initializeExitIntentModal();
     initializeEarlyBirdCountdown();
+    initializePastPartners();
     initializeHomePartners();
-    initializeSponsorPagePartners();
     initializeAgendaTabs();
     });
