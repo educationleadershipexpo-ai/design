@@ -384,6 +384,22 @@ section {
     color: #101c35; /* A dark color for contrast */
 }
 
+.btn-whatsapp {
+    background-color: #25D366;
+    color: var(--white);
+    border-color: #25D366;
+}
+.btn-whatsapp:hover {
+    background-color: #128C7E;
+    border-color: #128C7E;
+    color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(37, 211, 102, 0.4);
+}
+.btn-whatsapp i {
+    margin-right: 0.5rem;
+}
+
 
 /* --- Hero Section --- */
 #hero {
@@ -1363,6 +1379,23 @@ textarea.invalid {
     font-weight: normal;
     font-size: 0.85rem;
     margin-bottom: 0;
+}
+
+.form-divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #6c757d;
+    margin: 1.5rem 0;
+}
+.form-divider::before, .form-divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid var(--border-color);
+}
+.form-divider span {
+    padding: 0 1rem;
+    font-weight: 700;
 }
 
 
