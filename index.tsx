@@ -43,6 +43,7 @@
         const input = field as HTMLInputElement;
         const select = field as HTMLSelectElement;
         const checkbox = field as HTMLInputElement;
+        const textarea = field as HTMLTextAreaElement;
 
         const value = input.value?.trim();
         clearError(field);
@@ -100,7 +101,8 @@
             case 'form-booth-title':
             case 'form-sponsor-title':
                  if (value === '') {
-                    showError(field, 'Job Title is required.');
+                    const fieldName = (field.id === 'form-sponsor-title') ? 'Position' : 'Job Title';
+                    showError(field, `${fieldName} is required.`);
                     isValid = false;
                 }
                 break;
@@ -116,6 +118,13 @@
                     isValid = false;
                 }
                 break;
+
+            case 'form-sponsor-message':
+                if (textarea.value.trim() === '') {
+                    showError(field, 'Message is required.');
+                    isValid = false;
+                }
+                break;
             
             case 'form-interest':
             case 'form-booth-package':
@@ -125,7 +134,8 @@
             case 'form-student-source':
             case 'form-booth-country':
             case 'form-booth-company-field':
-            case 'form-sponsor-level':
+            case 'form-sponsor-country':
+            case 'form-sponsor-company-field':
                 if (select.value === '') {
                     showError(field, 'Please make a selection.');
                     isValid = false;
@@ -507,7 +517,7 @@
         });
     }
     
-    // --- Sponsorship Registration Form Logic (NEW) ---
+    // --- Sponsorship Registration Form Logic (UPDATED) ---
     function initializeSponsorshipRegistrationForm() {
         const form = document.getElementById('sponsorship-registration-form') as HTMLFormElement;
         const successMessage = document.getElementById('sponsor-form-success');
@@ -516,20 +526,25 @@
 
         // Get form fields
         const nameInput = document.getElementById('form-sponsor-name') as HTMLInputElement;
-        const titleInput = document.getElementById('form-sponsor-title') as HTMLInputElement;
-        const companyInput = document.getElementById('form-sponsor-company') as HTMLInputElement;
-        const websiteInput = document.getElementById('form-sponsor-website') as HTMLInputElement;
-        const emailInput = document.getElementById('form-sponsor-email') as HTMLInputElement;
+        const countrySelect = document.getElementById('form-sponsor-country') as HTMLSelectElement;
         const phoneInput = document.getElementById('form-sponsor-phone') as HTMLInputElement;
-        const levelSelect = document.getElementById('form-sponsor-level') as HTMLSelectElement;
+        const emailInput = document.getElementById('form-sponsor-email') as HTMLInputElement;
+        const websiteInput = document.getElementById('form-sponsor-website') as HTMLInputElement;
+        const companyInput = document.getElementById('form-sponsor-company') as HTMLInputElement;
+        const titleInput = document.getElementById('form-sponsor-title') as HTMLInputElement;
+        const companyFieldSelect = document.getElementById('form-sponsor-company-field') as HTMLSelectElement;
+        const messageTextarea = document.getElementById('form-sponsor-message') as HTMLTextAreaElement;
         const consentCheckbox = document.getElementById('form-sponsor-consent') as HTMLInputElement;
         
-        const inputs: HTMLElement[] = [nameInput, titleInput, companyInput, websiteInput, emailInput, phoneInput, levelSelect, consentCheckbox];
+        const inputs: HTMLElement[] = [
+            nameInput, countrySelect, phoneInput, emailInput, websiteInput, 
+            companyInput, titleInput, companyFieldSelect, messageTextarea, consentCheckbox
+        ];
 
         // Add real-time validation listeners
         inputs.forEach(input => {
             if (!input) return;
-            const eventType = input.tagName.toLowerCase() === 'select' || input.getAttribute('type') === 'checkbox' ? 'change' : 'input';
+            const eventType = ['SELECT', 'TEXTAREA'].includes(input.tagName) || input.getAttribute('type') === 'checkbox' ? 'change' : 'input';
             input.addEventListener(eventType, () => validateField(input));
         });
         
