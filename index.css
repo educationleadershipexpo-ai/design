@@ -1452,7 +1452,7 @@ textarea.invalid {
 
 .contact-info-list li {
     display: flex;
-    align-items: center;
+    align-items: flex-start; /* Changed from center to top-align for a cleaner look */
     gap: 1rem;
     margin-bottom: 1.5rem;
 }
@@ -1465,6 +1465,7 @@ textarea.invalid {
     -webkit-background-clip: unset;
     -webkit-text-fill-color: unset;
     color: rgba(255, 255, 255, 0.85);
+    margin-top: 3px; /* Optically align icon with the first line of text */
 }
 
 .contact-info-list p {
