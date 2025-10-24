@@ -84,7 +84,10 @@
             case 'form-student-phone':
             case 'form-booth-phone':
                 const phoneRegex = /^[\d\s()+-]+$/;
-                if (value !== '' && !phoneRegex.test(value)) {
+                if (field.id === 'form-booth-phone' && value === '') {
+                    showError(field, 'Mobile number is required.');
+                    isValid = false;
+                } else if (value !== '' && !phoneRegex.test(value)) {
                     showError(field, 'Please enter a valid phone number.');
                     isValid = false;
                 }
