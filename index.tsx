@@ -291,58 +291,60 @@
     }
 
     // --- Countdown Timer Logic ---
-    const daysEl = document.getElementById('days');
-    const hoursEl = document.getElementById('hours');
-    const minutesEl = document.getElementById('minutes');
-    const secondsEl = document.getElementById('seconds');
-    const countdownContainer = document.getElementById('countdown-timer');
+    function initializeMainCountdown() {
+        const daysEl = document.getElementById('days');
+        const hoursEl = document.getElementById('hours');
+        const minutesEl = document.getElementById('minutes');
+        const secondsEl = document.getElementById('seconds');
+        const countdownContainer = document.getElementById('countdown-timer');
 
-    if (daysEl && hoursEl && minutesEl && secondsEl && countdownContainer) {
-        const countdownDate = new Date('2026-04-19T08:00:00').getTime();
+        if (daysEl && hoursEl && minutesEl && secondsEl && countdownContainer) {
+            const countdownDate = new Date('2026-04-19T08:00:00').getTime();
 
-        const triggerUpdateAnimation = (element: HTMLElement | null) => {
-            if (!element) return;
-            const parentUnit = element.closest('.timer-unit');
-            if (parentUnit) {
-                parentUnit.classList.add('updated');
-                parentUnit.addEventListener('animationend', () => {
-                    parentUnit.classList.remove('updated');
-                }, { once: true });
-            }
-        };
+            const triggerUpdateAnimation = (element: HTMLElement | null) => {
+                if (!element) return;
+                const parentUnit = element.closest('.timer-unit');
+                if (parentUnit) {
+                    parentUnit.classList.add('updated');
+                    parentUnit.addEventListener('animationend', () => {
+                        parentUnit.classList.remove('updated');
+                    }, { once: true });
+                }
+            };
 
-        const timerInterval = setInterval(() => {
-        const now = new Date().getTime();
-        const distance = countdownDate - now;
+            const timerInterval = setInterval(() => {
+                const now = new Date().getTime();
+                const distance = countdownDate - now;
 
-        if (distance < 0) {
-            clearInterval(timerInterval);
-            countdownContainer.innerHTML = '<h4>The event has started!</h4>';
-            return;
-        }
+                if (distance < 0) {
+                    clearInterval(timerInterval);
+                    countdownContainer.innerHTML = '<h4>The event has started!</h4>';
+                    return;
+                }
 
-        const days = String(Math.floor(distance / (1000 * 60 * 60 * 24))).padStart(2, '0');
-        const hours = String(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
-        const minutes = String(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
-        const seconds = String(Math.floor((distance % (1000 * 60)) / 1000)).padStart(2, '0');
-        
-        if (daysEl.textContent !== days) {
-            daysEl.textContent = days;
-            triggerUpdateAnimation(daysEl);
+                const days = String(Math.floor(distance / (1000 * 60 * 60 * 24))).padStart(2, '0');
+                const hours = String(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+                const minutes = String(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+                const seconds = String(Math.floor((distance % (1000 * 60)) / 1000)).padStart(2, '0');
+                
+                if (daysEl.textContent !== days) {
+                    daysEl.textContent = days;
+                    triggerUpdateAnimation(daysEl);
+                }
+                if (hoursEl.textContent !== hours) {
+                    hoursEl.textContent = hours;
+                    triggerUpdateAnimation(hoursEl);
+                }
+                if (minutesEl.textContent !== minutes) {
+                    minutesEl.textContent = minutes;
+                    triggerUpdateAnimation(minutesEl);
+                }
+                if (secondsEl.textContent !== seconds) {
+                    secondsEl.textContent = seconds;
+                    triggerUpdateAnimation(secondsEl);
+                }
+            }, 1000);
         }
-        if (hoursEl.textContent !== hours) {
-            hoursEl.textContent = hours;
-            triggerUpdateAnimation(hoursEl);
-        }
-        if (minutesEl.textContent !== minutes) {
-            minutesEl.textContent = minutes;
-            triggerUpdateAnimation(minutesEl);
-        }
-        if (secondsEl.textContent !== seconds) {
-            secondsEl.textContent = seconds;
-            triggerUpdateAnimation(secondsEl);
-        }
-        }, 1000);
     }
     
     // --- Early Bird Countdown Timer ---
@@ -908,7 +910,9 @@
         const partners = [
             { src: 'https://www.studentdiwan.com/assets/logo-BhLYFmro.png', alt: 'Student Diwan Logo' },
             { src: 'https://cdn.asp.events/CLIENT_Mark_All_D856883D_926F_07B7_E9D09EE4984A0639/sites/inclusive-education-mena/media/Logos/Ed-logo.png', alt: 'Ministry of Education Logo' },
-            { src: 'https://res.cloudinary.com/dj3vhocuf/image/upload/v1761216928/Blue_Bold_Office_Idea_Logo_50_x_50_px_10_l68irx.png', alt: 'Sheraton Grand Doha Logo' }
+            { src: 'https://res.cloudinary.com/dj3vhocuf/image/upload/v1761216928/Blue_Bold_Office_Idea_Logo_50_x_50_px_10_l68irx.png', alt: 'Sheraton Grand Doha Logo' },
+            { src: 'https://i0.wp.com/blog.10times.com/wp-content/uploads/2019/09/cropped-10times-logo-hd.png?fit=3077%2C937&ssl=1', alt: '10times Logo' },
+            { src: 'https://www.eventbrite.com/blog/wp-content/uploads/2025/02/Eventbrite_Hero-Lock-up_Brite-Orange.png', alt: 'Eventbrite Logo' }
         ];
         
         logoGrid.innerHTML = '';
@@ -1109,6 +1113,7 @@
     highlightActiveNav();
     initializeMobileNav();
     initializeDropdowns();
+    initializeMainCountdown();
     initializeStudentRegistrationForm();
     initializeBoothRegistrationForm();
     initializeSponsorshipRegistrationForm();
