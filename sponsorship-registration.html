@@ -95,61 +95,81 @@
 
                 <form id="sponsorship-registration-form" novalidate style="background: var(--white); padding: 2.5rem; border-radius: 10px; border: 1px solid var(--border-color); color: var(--text-color); box-shadow: var(--shadow);">
                     
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="form-sponsor-name">Full Name *</label>
-                            <input type="text" id="form-sponsor-name" required>
-                            <div class="error-message"></div>
-                        </div>
-                        <div class="form-group">
-                            <label for="form-sponsor-title">Job Title *</label>
-                            <input type="text" id="form-sponsor-title" required>
-                            <div class="error-message"></div>
-                        </div>
+                    <div class="form-group">
+                        <label for="form-sponsor-name">Full Name - الاسم الكامل *</label>
+                        <input type="text" id="form-sponsor-name" required>
+                        <div class="error-message"></div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="form-sponsor-company">Company *</label>
-                            <input type="text" id="form-sponsor-company" required>
+                            <label for="form-sponsor-country">Country - الدولة *</label>
+                            <select id="form-sponsor-country" required>
+                                <option value="" disabled selected>Select country</option>
+                                <option value="Qatar">Qatar</option>
+                                <option value="Saudi Arabia">Saudi Arabia</option>
+                                <option value="United Arab Emirates">United Arab Emirates</option>
+                                <option value="Kuwait">Kuwait</option>
+                                <option value="Bahrain">Bahrain</option>
+                                <option value="Oman">Oman</option>
+                                <option value="United States">United States</option>
+                                <option value="United Kingdom">United Kingdom</option>
+                                <option value="Other">Other</option>
+                            </select>
                             <div class="error-message"></div>
                         </div>
                         <div class="form-group">
-                            <label for="form-sponsor-website">Company Website *</label>
-                            <input type="text" id="form-sponsor-website" placeholder="e.g., https://example.com" required>
+                            <label for="form-sponsor-phone">Mobile number - رقم الجوال *</label>
+                            <input type="tel" id="form-sponsor-phone" required>
                             <div class="error-message"></div>
                         </div>
                     </div>
 
                      <div class="form-row">
                         <div class="form-group">
-                            <label for="form-sponsor-email">Work Email *</label>
+                            <label for="form-sponsor-email">Email - البريد الالكتروني *</label>
                             <input type="email" id="form-sponsor-email" required>
                             <div class="error-message"></div>
                         </div>
                         <div class="form-group">
-                            <label for="form-sponsor-phone">Mobile Number *</label>
-                            <input type="tel" id="form-sponsor-phone" required>
+                            <label for="form-sponsor-website">Website *</label>
+                            <input type="text" id="form-sponsor-website" placeholder="e.g., https://example.com" required>
+                            <div class="error-message"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="form-sponsor-company">Company - الشركة *</label>
+                            <input type="text" id="form-sponsor-company" required>
+                            <div class="error-message"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="form-sponsor-title">Position - المنصب *</label>
+                            <input type="text" id="form-sponsor-title" required>
                             <div class="error-message"></div>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="form-sponsor-level">Sponsorship Level of Interest *</label>
-                        <select id="form-sponsor-level" required>
-                            <option value="" disabled selected>Select a level...</option>
-                            <option value="Platinum">Platinum Partner</option>
-                            <option value="Gold">Gold Partner</option>
-                            <option value="Startup">Start-Up Pavilion Sponsor</option>
-                            <option value="Branding">Exclusive Branding (A La Carte)</option>
-                            <option value="Custom">Custom Package Inquiry</option>
+                        <label for="form-sponsor-company-field">Company field - مجال الشركة *</label>
+                        <select id="form-sponsor-company-field" required>
+                            <option value="" disabled selected>Please select an option</option>
+                            <option value="Colleges, universities, institutes and schools">Colleges, universities, institutes and schools - الكليات، الجامعات، المعاهد والمدارس</option>
+                            <option value="Educational service">Educational service - الخدمات التعليمية</option>
+                            <option value="Edutainment program">Edutainment program - برامج التعليم بالترفيه</option>
+                            <option value="Educational consulting">Educational consulting - الاستشارات التعليمية</option>
+                            <option value="Education technology">Education technology - تكنولوجيا التعليم</option>
+                            <option value="Educational Equipment">Educational Equipment - ادوات التعليم</option>
+                            <option value="Other">Other - اخرى</option>
                         </select>
                         <div class="error-message"></div>
                     </div>
                    
                     <div class="form-group">
-                        <label for="form-sponsor-goals">Primary Marketing Goal (Optional)</label>
-                        <textarea id="form-sponsor-goals" rows="4" placeholder="e.g., Lead generation, brand awareness in the MENA region, thought leadership..."></textarea>
+                        <label for="form-sponsor-message">Message - رسالة *</label>
+                        <textarea id="form-sponsor-message" rows="4" required></textarea>
+                         <div class="error-message"></div>
                     </div>
 
                     <div class="form-group form-group-consent">
