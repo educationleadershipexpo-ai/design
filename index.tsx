@@ -51,6 +51,7 @@
             case 'form-name':
             case 'form-booth-name':
             case 'form-student-name':
+            case 'form-sponsor-name':
                 if (value === '') {
                     showError(field, 'Name is required.');
                     isValid = false;
@@ -60,8 +61,9 @@
             case 'form-organization':
             case 'form-booth-company':
             case 'form-student-school':
+            case 'form-sponsor-company':
                 if (value === '') {
-                    const fieldName = (field.id === 'form-booth-company') ? 'Company' : (field.id === 'form-student-school') ? 'School/Institution' : 'Organization';
+                    const fieldName = (field.id === 'form-booth-company' || field.id === 'form-sponsor-company') ? 'Company' : (field.id === 'form-student-school') ? 'School/Institution' : 'Organization';
                     showError(field, `${fieldName} is required.`);
                     isValid = false;
                 }
@@ -70,6 +72,7 @@
             case 'form-email':
             case 'form-booth-email':
             case 'form-student-email':
+            case 'form-sponsor-email':
                 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
                 if (value === '') {
                     showError(field, 'Email is required.');
@@ -83,8 +86,9 @@
             case 'form-phone':
             case 'form-student-phone':
             case 'form-booth-phone':
+            case 'form-sponsor-phone':
                 const phoneRegex = /^[\d\s()+-]+$/;
-                if (field.id === 'form-booth-phone' && value === '') {
+                if ((field.id === 'form-booth-phone' || field.id === 'form-sponsor-phone') && value === '') {
                     showError(field, 'Mobile number is required.');
                     isValid = false;
                 } else if (value !== '' && !phoneRegex.test(value)) {
@@ -94,6 +98,7 @@
                 break;
 
             case 'form-booth-title':
+            case 'form-sponsor-title':
                  if (value === '') {
                     showError(field, 'Job Title is required.');
                     isValid = false;
@@ -101,6 +106,7 @@
                 break;
             
             case 'form-booth-website':
+            case 'form-sponsor-website':
                 const urlRegex = /^(https?:\/\/)?([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?$/i;
                 if (value === '') {
                     showError(field, 'Website is required.');
@@ -119,6 +125,7 @@
             case 'form-student-source':
             case 'form-booth-country':
             case 'form-booth-company-field':
+            case 'form-sponsor-level':
                 if (select.value === '') {
                     showError(field, 'Please make a selection.');
                     isValid = false;
@@ -134,6 +141,7 @@
             
             case 'form-booth-consent':
             case 'form-student-consent':
+            case 'form-sponsor-consent':
                 if (!checkbox.checked) {
                     showError(checkbox, 'You must consent to continue.');
                     isValid = false;
@@ -483,6 +491,45 @@
         inputs.forEach(input => {
             if (!input) return;
             const eventType = ['select', 'checkbox'].includes(input.tagName.toLowerCase()) || input.getAttribute('type') === 'checkbox' ? 'change' : 'input';
+            input.addEventListener(eventType, () => validateField(input));
+        });
+        
+        // Handle form submission
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const isFormValid = inputs.map(input => validateField(input)).every(Boolean);
+            
+            if (isFormValid) {
+                form.style.display = 'none';
+                successMessage.style.display = 'block';
+                window.scrollTo(0, 0); // Scroll to top to see message
+            }
+        });
+    }
+    
+    // --- Sponsorship Registration Form Logic (NEW) ---
+    function initializeSponsorshipRegistrationForm() {
+        const form = document.getElementById('sponsorship-registration-form') as HTMLFormElement;
+        const successMessage = document.getElementById('sponsor-form-success');
+
+        if (!form || !successMessage) return;
+
+        // Get form fields
+        const nameInput = document.getElementById('form-sponsor-name') as HTMLInputElement;
+        const titleInput = document.getElementById('form-sponsor-title') as HTMLInputElement;
+        const companyInput = document.getElementById('form-sponsor-company') as HTMLInputElement;
+        const websiteInput = document.getElementById('form-sponsor-website') as HTMLInputElement;
+        const emailInput = document.getElementById('form-sponsor-email') as HTMLInputElement;
+        const phoneInput = document.getElementById('form-sponsor-phone') as HTMLInputElement;
+        const levelSelect = document.getElementById('form-sponsor-level') as HTMLSelectElement;
+        const consentCheckbox = document.getElementById('form-sponsor-consent') as HTMLInputElement;
+        
+        const inputs: HTMLElement[] = [nameInput, titleInput, companyInput, websiteInput, emailInput, phoneInput, levelSelect, consentCheckbox];
+
+        // Add real-time validation listeners
+        inputs.forEach(input => {
+            if (!input) return;
+            const eventType = input.tagName.toLowerCase() === 'select' || input.getAttribute('type') === 'checkbox' ? 'change' : 'input';
             input.addEventListener(eventType, () => validateField(input));
         });
         
@@ -1028,6 +1075,7 @@
     initializeDropdowns();
     initializeStudentRegistrationForm();
     initializeBoothRegistrationForm();
+    initializeSponsorshipRegistrationForm();
     initializeChatbot();
     initializeProactiveChat();
     initializeFaqAccordion();
