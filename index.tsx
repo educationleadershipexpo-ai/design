@@ -84,25 +84,53 @@
             case 'form-student-phone':
             case 'form-booth-phone':
                 const phoneRegex = /^[\d\s()+-]+$/;
-                if (value !== '' && !phoneRegex.test(value)) {
-                    showError(field, 'Please enter a valid phone number.');
-                    isValid = false;
+                 if (field.id === 'form-booth-phone') {
+                    if (value === '') {
+                        showError(field, 'Mobile number is required.');
+                        isValid = false;
+                    } else if (!phoneRegex.test(value)) {
+                        showError(field, 'Please enter a valid mobile number.');
+                        isValid = false;
+                    }
+                } else { // Keep original logic for other optional phone fields
+                    if (value !== '' && !phoneRegex.test(value)) {
+                        showError(field, 'Please enter a valid phone number.');
+                        isValid = false;
+                    }
                 }
                 break;
 
             case 'form-booth-title':
                  if (value === '') {
-                    showError(field, 'Job Title is required.');
+                    showError(field, 'Position is required.');
+                    isValid = false;
+                }
+                break;
+
+            case 'form-booth-website':
+                const urlRegex = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/;
+                if (value === '') {
+                    showError(field, 'Website is required.');
+                    isValid = false;
+                } else if (!urlRegex.test(value)) {
+                    showError(field, 'Please enter a valid website URL.');
+                    isValid = false;
+                }
+                break;
+
+            case 'form-booth-message':
+                if (value === '') {
+                    showError(field, 'Message is required.');
                     isValid = false;
                 }
                 break;
             
             case 'form-interest':
-            case 'form-booth-package':
-            case 'form-booth-source':
             case 'form-student-nationality':
             case 'form-student-grade':
             case 'form-student-source':
+            case 'form-booth-country':
+            case 'form-booth-field':
                 if (select.value === '') {
                     showError(field, 'Please make a selection.');
                     isValid = false;
@@ -429,35 +457,21 @@
 
         if (!form || !successMessage) return;
 
-        // Get form fields
         const nameInput = document.getElementById('form-booth-name') as HTMLInputElement;
         const titleInput = document.getElementById('form-booth-title') as HTMLInputElement;
         const companyInput = document.getElementById('form-booth-company') as HTMLInputElement;
         const emailInput = document.getElementById('form-booth-email') as HTMLInputElement;
         const phoneInput = document.getElementById('form-booth-phone') as HTMLInputElement;
-        const packageSelect = document.getElementById('form-booth-package') as HTMLSelectElement;
-        const sourceSelect = document.getElementById('form-booth-source') as HTMLSelectElement;
+        const countrySelect = document.getElementById('form-booth-country') as HTMLSelectElement;
+        const websiteInput = document.getElementById('form-booth-website') as HTMLInputElement;
+        const fieldSelect = document.getElementById('form-booth-field') as HTMLSelectElement;
+        const messageTextarea = document.getElementById('form-booth-message') as HTMLTextAreaElement;
         const consentCheckbox = document.getElementById('form-booth-consent') as HTMLInputElement;
-        const boothIdInput = document.getElementById('form-booth-id') as HTMLInputElement;
 
-        const inputs: HTMLElement[] = [nameInput, titleInput, companyInput, emailInput, phoneInput, packageSelect, sourceSelect, consentCheckbox];
-
-        // Pre-fill form from URL parameters
-        try {
-            const urlParams = new URLSearchParams(window.location.search);
-            const pkg = urlParams.get('package');
-            const boothId = urlParams.get('boothId');
-            
-            if (pkg && packageSelect) {
-                const option = Array.from(packageSelect.options).find(opt => opt.value.toLowerCase() === pkg.toLowerCase());
-                if(option) option.selected = true;
-            }
-            if (boothId && boothIdInput) {
-                boothIdInput.value = boothId;
-            }
-        } catch (e) {
-            console.error("Error processing URL parameters:", e);
-        }
+        const inputs: HTMLElement[] = [
+            nameInput, titleInput, companyInput, emailInput, phoneInput,
+            countrySelect, websiteInput, fieldSelect, messageTextarea, consentCheckbox
+        ];
         
         // Add real-time validation listeners
         inputs.forEach(input => {
