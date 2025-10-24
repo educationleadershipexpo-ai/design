@@ -832,39 +832,204 @@ section {
 }
 
 
-/* --- Sponsorship & Booths --- */
+/* --- Sponsorship & Booths (Redesigned) --- */
 .gradient-headline { background: var(--gradient); color: var(--white); padding: 0.5rem 2rem; border-radius: 50px; display: inline-block; font-size: 1.8rem; margin: 0 auto 1.5rem;}
 #booth-packages { background-color: var(--surface-color); }
-.packages-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; justify-content: center; }
+
+.packages-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+    gap: 2rem; 
+    justify-content: center; 
+    align-items: stretch; /* Make cards same height */
+}
+
 .package-card {
     background: var(--white);
-    border-radius: 10px;
+    border-radius: 15px;
     box-shadow: var(--shadow);
-    padding: 2.5rem 2rem;
-    text-align: center;
-    border-top: 5px solid #d12386;
     display: flex;
     flex-direction: column;
     transition: transform 0.3s, box-shadow 0.3s;
     position: relative;
+    border: 1px solid var(--border-color);
+    overflow: hidden;
 }
-.package-card:hover { transform: translateY(-10px); box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
-.package-card.popular { border-color: #711fb8; transform: scale(1.05); }
+
+.package-card:hover { 
+    transform: translateY(-10px); 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15); 
+}
+
+.package-card.popular, .package-card.best-visibility {
+    border: 2px solid #711fb8;
+}
+@media (min-width: 1025px) {
+    .package-card.popular:hover {
+        transform: translateY(-10px) scale(1.03);
+    }
+}
+
 .popular-badge {
     position: absolute;
-    top: -15px;
-    left: 50%;
-    transform: translateX(-50%);
+    top: 20px;
+    right: -45px;
     background: var(--gradient);
     color: var(--white);
-    padding: 5px 15px;
-    border-radius: 50px;
+    padding: 8px 40px;
     font-size: 0.8rem;
     font-weight: 700;
+    transform: rotate(45deg);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
-.package-card h3 { font-size: 1.8rem; margin-top:0; }
-.package-card .package-features { flex-grow: 1; color: #555; margin-bottom: 2rem; font-size: 0.95rem;}
-.package-card .btn { margin-top: auto; }
+
+.package-card__header {
+    padding: 2rem 1.5rem;
+    text-align: center;
+    border-bottom: 1px solid var(--border-color);
+    background-color: #fdfcff;
+}
+.package-card__header i {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.package-card__header h3 {
+    font-size: 1.5rem;
+    margin: 0 0 0.5rem;
+    font-weight: 800;
+}
+.package-card__size {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #555;
+    margin: 0;
+}
+
+.package-card__body {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.package-card__features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem;
+    flex-grow: 1;
+}
+.package-card__features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #444;
+}
+.package-card__features li i {
+    color: #d12386;
+    margin-top: 4px;
+}
+
+.package-card .btn {
+    margin-top: auto;
+    width: 100%;
+}
+
+.urgency-cta-section {
+    margin-top: 4rem;
+    padding: 2.5rem;
+    background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url('https://images.pexels.com/photos/2608517/pexels-photo-2608517.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2') center/cover;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    text-align: center;
+    border: 1px solid var(--border-color);
+}
+.urgency-cta-section h3 {
+    font-size: 2rem;
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+.urgency-cta-section h3 i {
+    color: #d12386;
+    margin-right: 0.5rem;
+}
+.urgency-cta-section p {
+    max-width: 600px;
+    margin: 0 auto 1rem;
+    font-size: 1.1rem;
+}
+
+.urgency-cta-section .countdown-label {
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+#early-bird-countdown {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin: 0.5rem auto 0;
+    max-width: 450px;
+}
+#early-bird-countdown .timer-unit {
+    background: rgba(0,0,0,0.05);
+    border: 1px solid rgba(0,0,0,0.1);
+    padding: 1rem;
+    border-radius: 10px;
+    text-align: center;
+    min-width: 80px;
+    flex-grow: 1;
+}
+#early-bird-countdown .timer-unit span {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    font-family: var(--heading-font);
+    line-height: 1;
+    color: #711fb8;
+}
+#early-bird-countdown .timer-unit p {
+    margin: 0;
+    font-size: 0.75rem;
+    opacity: 0.8;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-color);
+}
+#early-bird-countdown h4 {
+    color: var(--text-color);
+    text-align: center;
+    width: 100%;
+}
+
+.prime-booth-counter {
+    margin: 1.5rem 0 0;
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+.prime-booth-counter p {
+    margin: 0;
+}
+.prime-booth-counter span {
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 1.5rem;
+    vertical-align: middle;
+}
+
+.urgency-cta-section .btn {
+    margin-top: 2rem;
+}
+
 
 /* 3 Ways to Join Section */
 #three-ways-to-join { background-color: var(--white); }
@@ -874,6 +1039,15 @@ section {
     overflow: hidden;
     box-shadow: var(--shadow);
     text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.way-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+.way-card a {
+    text-decoration: none;
+    color: inherit;
 }
 .way-card img { width: 100%; height: 200px; object-fit: cover; }
 .way-card h3 { margin: 1.5rem 0 0.5rem; }
@@ -1214,10 +1388,11 @@ input.invalid {
     grid-template-columns: 2fr 1fr 1fr 1.5fr;
     gap: 3rem;
     padding-bottom: 40px;
+    align-items: start;
 }
 .footer-col .logo img {
-    height: 100px;
-    margin-bottom: 0.1rem;
+    height: 80px;
+    margin-bottom: 1rem;
 }
 .footer-col h3 {
     color: var(--white);
@@ -1716,6 +1891,390 @@ input.invalid {
     font-size: 1.1rem;
 }
 
+/* --- NEW Agenda Page Styles --- */
+.agenda-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+.agenda-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color);
+}
+.tab-btn {
+    padding: 1rem 1.5rem;
+    font-family: var(--heading-font);
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s ease;
+    color: #555;
+}
+.tab-btn:hover {
+    color: var(--text-color);
+    background-color: var(--surface-color);
+}
+.tab-btn.active {
+    color: #711fb8;
+    border-bottom-color: #711fb8;
+}
+
+.agenda-content {
+    display: none;
+}
+.agenda-content.active {
+    display: block;
+    animation: fadeIn 0.5s ease-in-out;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.time-block {
+    margin-bottom: 3rem;
+}
+.time-block-title {
+    font-size: 1.5rem;
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+    text-align: left;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--surface-color);
+}
+.session-list {
+    display: grid;
+    gap: 1.5rem;
+}
+.session-card {
+    background: var(--white);
+    border-radius: 10px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    border-left: 5px solid #711fb8;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.session-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+.session-card.keynote {
+    border-left-color: #d12386;
+}
+.session-icon {
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    background: var(--surface-color);
+    color: #711fb8;
+    font-size: 1.2rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.session-card.keynote .session-icon {
+    color: #d12386;
+}
+.session-details {
+    margin: 0;
+}
+.session-details p {
+    margin: 0;
+    line-height: 1.5;
+}
+
+.zones-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.zone-card {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    text-align: center;
+}
+.zone-card i {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.zone-card h4 {
+    font-size: 1.3rem;
+    margin: 0 0 0.5rem;
+}
+.zone-card p {
+    font-size: 0.9rem;
+    margin: 0;
+    color: #555;
+}
+
+#attendance-section .market-opportunity-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+/* Map Container for Plan Your Trip */
+.map-container {
+    position: relative;
+    overflow: hidden;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    margin-top: 1.5rem;
+}
+.map-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* Coming Soon Section */
+.coming-soon-section {
+    padding: 100px 0;
+    text-align: center;
+}
+.coming-soon-content {
+    max-width: 600px;
+    margin: 0 auto;
+    background: var(--white);
+    padding: 3rem;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+}
+.coming-soon-content i {
+    font-size: 4rem;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 1.5rem;
+}
+.coming-soon-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+.coming-soon-content p {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 2rem;
+}
+
+/* --- Sponsorship Tiers (NEW V3 Styles) --- */
+#sponsorship-details h2, #sponsorship-details h3,
+#exclusive-branding h2, #exclusive-branding h3 {
+    text-align: left;
+}
+#sponsorship-details .subtitle,
+#exclusive-branding .subtitle {
+    text-align: left;
+    margin-left: 0;
+}
+
+.tiers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 2rem;
+    align-items: stretch; /* crucial for equal height cards */
+}
+.tier-card {
+    background: var(--white);
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05), 0 10px 20px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.tier-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.07), 0 15px 30px rgba(0,0,0,0.07);
+}
+
+.tier-header {
+    padding: 2rem;
+    color: var(--white);
+}
+.tier-card.platinum .tier-header { background: #101c35; }
+.tier-card.gold .tier-header { background: #ffc107; color: var(--text-color); }
+.tier-card.startup .tier-header { background: var(--gradient); }
+
+.tier-header h3 {
+    font-size: 1.8rem;
+    color: inherit;
+    margin-bottom: 0.25rem;
+    text-align: left;
+}
+.tier-subtitle {
+    font-weight: 700;
+    opacity: 0.9;
+    margin: 0;
+}
+.tier-body {
+    padding: 1.5rem 2rem;
+    flex-grow: 1; 
+    display: flex;
+    flex-direction: column;
+}
+.tier-description {
+    margin-bottom: 1.5rem;
+    color: #444;
+}
+.tier-card h4 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-align: left;
+}
+.tier-benefits {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem;
+    flex-grow: 1; /* Make the list grow to push footer down */
+}
+.tier-benefits li {
+    padding-left: 2rem;
+    position: relative;
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
+}
+.tier-benefits li::before {
+    content: '\f00c';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    left: 0;
+    top: 4px;
+    color: #d12386;
+}
+/* A simple way to create columns with CSS */
+.tier-benefits.two-column-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem 1.5rem;
+}
+.tier-benefits.two-column-list li {
+    margin-bottom: 0; /* Remove bottom margin for grid items */
+}
+.tier-footer {
+    padding: 0 2rem 2rem;
+    margin-top: auto; /* Pushes footer to the bottom */
+}
+.tier-footer .btn {
+    width: 100%;
+}
+
+.sponsorship-addons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+.sponsorship-addons-grid .a-la-carte-card {
+    background: var(--surface-color);
+    padding: 2.5rem 2rem;
+    border-radius: 15px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: 1px solid transparent;
+}
+.sponsorship-addons-grid .a-la-carte-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow);
+    background: var(--white);
+    border-color: var(--border-color);
+}
+.sponsorship-addons-grid .a-la-carte-card i {
+    font-size: 3rem;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 1.5rem;
+}
+.sponsorship-addons-grid .a-la-carte-card h4 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+.sponsorship-addons-grid .a-la-carte-card p {
+    font-size: 0.95rem;
+    color: #555;
+    margin-bottom: 0;
+}
+
+
+/* --- NEW Sponsorship Page V2 Styles --- */
+/* Sponsorship Intro Section */
+#sponsorship-intro .market-opportunity-grid {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+#sponsorship-intro .stat-card {
+    background: var(--surface-color);
+}
+#sponsorship-intro h2 {
+    text-align: left;
+}
+#sponsorship-intro .subtitle {
+    text-align: left;
+    margin-left: 0;
+}
+
+/* Past Partners Showcase */
+#past-partners-showcase h2 {
+    text-align: left;
+}
+#past-partners-showcase .subtitle {
+    text-align: left;
+    margin-left: 0;
+}
+#past-partners-showcase .logo-grid {
+    max-width: 100%;
+}
+
+/* Sponsor FAQ */
+#sponsor-faq h2 {
+    text-align: left;
+    margin-bottom: 1rem;
+}
+#sponsor-faq .faq-accordion {
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 2rem;
+}
+
+/* Final CTA Section */
+#final-cta {
+    background: var(--gradient);
+    color: var(--white);
+}
+#final-cta h2, #final-cta p {
+    color: var(--white);
+    text-align: center;
+}
+#final-cta .cta-group {
+    margin-top: 2.5rem;
+}
+#final-cta h2 {
+    font-size: 2.5rem;
+}
+
+
 /* --- Responsive --- */
 @media (max-width: 1400px) {
     .main-header .container {
@@ -1783,6 +2342,12 @@ input.invalid {
 
     .logo img {
         height: 55px;
+    }
+}
+
+@media (min-width: 992px) {
+    .sponsorship-addons-grid {
+        grid-template-columns: repeat(4, 1fr);
     }
 }
 
@@ -1970,5 +2535,23 @@ input.invalid {
     .benefit-card h3 {
         white-space: normal;
         min-height: auto;
+    }
+
+    .agenda-tabs {
+        flex-direction: column;
+        gap: 0;
+    }
+    .tab-btn {
+        text-align: left;
+        border-bottom: 1px solid var(--border-color);
+    }
+    .tab-btn.active {
+        border-bottom: 3px solid #711fb8;
+    }
+    .tier-benefits.two-column-list {
+        grid-template-columns: 1fr;
+    }
+    .tiers-grid {
+        grid-template-columns: 1fr;
     }
 }
