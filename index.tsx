@@ -225,47 +225,68 @@
     
     // --- Dropdown Navigation Logic ---
     function initializeDropdowns() {
-        const dropdownToggles = document.querySelectorAll('.has-dropdown > a');
+        const dropdowns = document.querySelectorAll('.has-dropdown');
 
-        // Setup ARIA attributes
-        dropdownToggles.forEach((toggle, index) => {
-            const menu = toggle.nextElementSibling as HTMLElement;
+        dropdowns.forEach((dropdown, index) => {
+            const toggle = dropdown.querySelector('a') as HTMLAnchorElement;
+            const menu = dropdown.querySelector('.dropdown-menu') as HTMLElement;
+
+            if (!toggle || !menu) return;
+
+            // Setup ARIA attributes
+            const menuId = `dropdown-menu-${index}`;
             toggle.setAttribute('aria-haspopup', 'true');
             toggle.setAttribute('aria-expanded', 'false');
-            if (menu) {
-                const menuId = `dropdown-menu-${index}`;
-                menu.id = menuId;
-                toggle.setAttribute('aria-controls', menuId);
-            }
+            menu.id = menuId;
+            toggle.setAttribute('aria-controls', menuId);
 
+            // Click handler for mobile - toggles dropdown
             toggle.addEventListener('click', (e) => {
-                // Prevent default for nav links that are just toggles, so they only open the dropdown.
-                e.preventDefault();
-                e.stopPropagation(); // Stop click from propagating to the document listener
-                
-                const parentLi = toggle.parentElement as HTMLElement;
-                const isCurrentlyOpen = parentLi.classList.contains('dropdown-open');
+                if (window.innerWidth <= 768) {
+                    e.preventDefault(); // Prevent navigation on mobile tap
+                    e.stopPropagation(); // Prevent document click listener from firing
+                    
+                    const isCurrentlyOpen = dropdown.classList.contains('dropdown-open');
 
-                // First, close all other dropdowns
-                document.querySelectorAll('.has-dropdown.dropdown-open').forEach(openDropdown => {
-                    if (openDropdown !== parentLi) {
-                        openDropdown.classList.remove('dropdown-open');
-                        openDropdown.querySelector('a')?.setAttribute('aria-expanded', 'false');
-                    }
-                });
+                    // Close other open dropdowns
+                    document.querySelectorAll('.has-dropdown.dropdown-open').forEach(openDropdown => {
+                        if (openDropdown !== dropdown) {
+                            openDropdown.classList.remove('dropdown-open');
+                            openDropdown.querySelector('a')?.setAttribute('aria-expanded', 'false');
+                        }
+                    });
 
-                // Then, toggle the current dropdown
-                parentLi.classList.toggle('dropdown-open');
-                toggle.setAttribute('aria-expanded', String(!isCurrentlyOpen));
+                    dropdown.classList.toggle('dropdown-open');
+                    toggle.setAttribute('aria-expanded', String(!isCurrentlyOpen));
+                }
+                // On desktop, the default link behavior is allowed, so no preventDefault.
+            });
+
+            // Mouse enter/leave handlers for desktop
+            dropdown.addEventListener('mouseenter', () => {
+                if (window.innerWidth > 768) {
+                    dropdown.classList.add('dropdown-open');
+                    toggle.setAttribute('aria-expanded', 'true');
+                }
+            });
+
+            dropdown.addEventListener('mouseleave', () => {
+                if (window.innerWidth > 768) {
+                    dropdown.classList.remove('dropdown-open');
+                    toggle.setAttribute('aria-expanded', 'false');
+                }
             });
         });
         
-        // Add a single listener to the document to close dropdowns when clicking outside
+        // This listener closes any open dropdown when a click happens anywhere else on the page.
+        // It's primarily for mobile touch interactions outside the menu.
         document.addEventListener('click', () => {
-            document.querySelectorAll('.has-dropdown.dropdown-open').forEach(openDropdown => {
-                openDropdown.classList.remove('dropdown-open');
-                openDropdown.querySelector('a')?.setAttribute('aria-expanded', 'false');
-            });
+            if (window.innerWidth <= 768) {
+                document.querySelectorAll('.has-dropdown.dropdown-open').forEach(openDropdown => {
+                    openDropdown.classList.remove('dropdown-open');
+                    openDropdown.querySelector('a')?.setAttribute('aria-expanded', 'false');
+                });
+            }
         });
     }
 
